@@ -1,0 +1,26 @@
+// 1. Variables (الدماغ)
+@use 'abstracts/variables' as *;
+
+// 2. Base Styles (الهيكل)
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/base';
+@use 'components/buttons';
+@use 'components/card';
+@use 'components/navbar';
+@use 'base/layout';
+@use 'components/hero';
+@use 'components/services';
+@use 'components/testimonials';
+@use 'components/footer';
+
+
+// Pages
+@use 'pages/about';
+
+
+// 3. Components (المكونات - سننشئها في الخطوة القادمة مثل الأزرار والـ Navbar)
+// @use 'components/navbar';
+
+// 4. Utilities (أدوات مساعدة - مثل classes لتغيير اللون بسرعة)
+// @use 'utils/helpers';

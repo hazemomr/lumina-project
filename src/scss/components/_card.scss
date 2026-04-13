@@ -1,0 +1,67 @@
+// _card.scss
+
+.card {
+    background-color: #ffffff;
+    border-radius: 12px; // Rounded corners
+    overflow: hidden;    // Ensures image doesn't leak out of rounded corners
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Soft shadow
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 20px;
+    max-width: 350px;    // Limit width for better look
+    border: 1px solid #eee;
+
+    // Hover effect: card lifts up when mouse enters
+    &:hover {
+        transform: translateY(-10px); // Move up by 10px
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    // Card Image Section
+    &__image-container {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; // Ensures image covers area without distortion
+            transition: transform 0.5s ease;
+        }
+    }
+
+    // Zoom effect on image when hovering over the card
+    &:hover &__image-container img {
+        transform: scale(1.1); // Zoom in slightly
+    }
+
+    // Card Content Section (Text area)
+    &__body {
+        padding: 20px;
+    }
+
+    // Card Title
+    &__title {
+        margin: 0 0 10px 0;
+        font-size: 1.5rem;
+        color: #333;
+        font-weight: 700;
+    }
+
+    // Card Description/Text
+    &__text {
+        font-size: 0.95rem;
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    // Card Footer (Action area)
+    &__footer {
+        padding: 15px 20px;
+        border-top: 1px solid #eee;
+        display: flex;
+        justify-content: space-between; // Pushes button to one side
+        align-items: center;
+    }
+}

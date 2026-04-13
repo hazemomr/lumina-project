@@ -1,0 +1,49 @@
+// _layout.scss
+
+@use '../abstracts/variables' as v; // استدعاء المتغيرات
+
+// 1. الحاوية الرئيسية (The Container)
+// هذه الفئة تضمن أن المحتوى لا يتمدد بشكل مبالغ فيه في الشاشات الكبيرة
+.container {
+    width: 100%;
+    max-width: 1200px; // العرض القياسي للمواقع الاحترافية
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: v.$spacing-unit;  // استخدام المتغيرات لضمان التناسق
+    padding-right: v.$spacing-unit;
+}
+
+// 2. نظام الأقسام (The Section)
+// لضمان أن كل قسم في الموقع (Hero, About, Services) له نفس المسافات الرأسية
+.section {
+    padding-top: v.$spacing-unit * 5; // مسافة رأسية كبيرة (مثلاً 80px)
+    padding-bottom: v.$spacing-unit * 5;
+}
+
+// 3. نظام الشبكة البسيط (Simple Grid)
+// سنصنع "كلاس" يساعدنا في توزيع العناصر بجانب بعضها بسهولة
+.grid {
+    display: grid;
+    gap: v.$spacing-unit * 2; // مسافة بين العناصر
+    
+    // توزيع افتراضي: عمود واحد (للموبايل)
+    grid-template-columns: 1fr;
+
+    // للشاشات المتوسطة: عمودين
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    // للشاشات الكبيرة: 3 أعمدة
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+// 4. محاذاة العناصر (Flex Utils)
+// كلاسات سريعة لتوسيط أي شيء داخل الصفحة
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

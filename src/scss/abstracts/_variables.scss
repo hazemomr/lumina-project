@@ -1,0 +1,36 @@
+// 1. Colors (الألوان)
+// سنستخدم نظام الـ Opacity لسهولة التحكم في الشفافية
+$color-primary: #2563eb;    // الأزرق الرئيسي
+$color-secondary: #7c3aed;  // البنفسجي الثانوي
+$color-accent: #f59e0b;     // البرتقالي للفت الانتباه (Accent)
+
+$color-success: #10b981;    // الأخضر للنجاح
+$color-error: #ef4444;      // الأحمر للخطأ
+$color-warning: #f59e0b;    // الأصفر للتحذير
+
+$color-white: #ffffff;
+$color-light: #f8fafc;
+$color-dark: #0f172a;
+$color-grey: #64748b;
+$color-text: #334155;
+
+// 2. Typography (الخطوط)
+$font-main: 'Inter', sans-serif;
+$font-heading: 'Poppins', sans-serif;
+
+$font-size-base: 16px;
+$font-size-sm: 0.875rem;
+$font-size-lg: 1.25rem;
+$font-size-xl: 2rem;
+$font-size-xxl: 3rem;
+
+// 3. Spacing & Sizing (المسافات)
+$spacing-unit: 1rem; // الوحدة الأساسية للمسافات
+$border-radius: 8px;
+$transition-speed: 0.3s ease;
+
+// 4. Shadows (الظلال)
+$shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+
+// 5. Easing (منحنيات الحركة)
+$ease-premium: cubic-bezier(0.22, 1, 0.36, 1);

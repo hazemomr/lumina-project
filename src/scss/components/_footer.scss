@@ -1,0 +1,228 @@
+@use '../abstracts/variables' as v;
+
+.footer {
+    background-color: v.$color-dark;
+    color: v.$color-white;
+    padding-block: (v.$spacing-unit * 6);
+    position: relative;
+    transition: background-color 0.3s ease;
+    border-top: 1px solid rgba(v.$color-white, 0.05);
+
+    // Container
+    &__container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: (v.$spacing-unit * 6);
+        max-width: 1200px;
+        margin-inline: auto;
+        padding-inline: (v.$spacing-unit * 2);
+
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: 1024px) {
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+        }
+    }
+
+    &__column {
+        display: flex;
+        flex-direction: column;
+        gap: (v.$spacing-unit * 2);
+    }
+
+    // Title
+    &__title {
+        font-family: v.$font-heading;
+        font-size: v.$font-size-lg;
+        font-weight: 700;
+        color: v.$color-white;
+        margin-block-end: (v.$spacing-unit * 2);
+        position: relative;
+        display: inline-block;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: v.$color-primary;
+        }
+    }
+
+    // Brand text
+    &__brand-text {
+        font-family: v.$font-main;
+        color: rgba(v.$color-white, 0.85);
+        line-height: 1.7;
+        font-size: 0.95rem;
+        max-width: 320px;
+    }
+
+    // Social links
+    &__social-links {
+        display: flex;
+        gap: v.$spacing-unit;
+        margin-block-start: v.$spacing-unit;
+
+        &-item {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(v.$color-white, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: v.$color-white;
+            text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+
+            &:hover {
+                transform: translateY(-4px);
+            }
+
+            // Brands
+            &--facebook:hover { background-color: #1877F2; }
+            &--twitter:hover { background-color: #000000; }
+            &--instagram:hover { 
+                background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); 
+            }
+            &--linkedin:hover { background-color: #0077B5; }
+        }
+    }
+
+    // Links
+    &__links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: (v.$spacing-unit * 1.5);
+        padding: 0;
+        margin: 0;
+    }
+
+    &__link {
+        color: rgba(v.$color-white, 0.7);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+            color: v.$color-white;
+            transform: translateX(5px);
+            text-decoration: underline;
+        }
+
+        &:focus-visible {
+            outline: 2px solid v.$color-primary;
+            outline-offset: 3px;
+        }
+    }
+
+    // Newsletter
+    &__newsletter {
+        display: flex;
+        flex-direction: column;
+        gap: (v.$spacing-unit * 2);
+    }
+
+    &__newsletter-text {
+        font-size: 0.9rem;
+        color: rgba(v.$color-white, 0.7);
+    }
+
+    &__form {
+        display: flex;
+        gap: 10px;
+
+        @media (max-width: 480px) {
+            flex-direction: column;
+        }
+    }
+
+    &__input {
+        flex: 1;
+        padding: 0.8rem 1rem;
+        border-radius: v.$border-radius;
+        border: 1px solid rgba(v.$color-white, 0.2);
+        background-color: rgba(v.$color-white, 0.05);
+        color: v.$color-white;
+        font-family: v.$font-main;
+        transition: all 0.3s ease;
+
+        &::placeholder {
+            color: rgba(v.$color-white, 0.4);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: v.$color-primary;
+            background-color: rgba(v.$color-white, 0.1);
+            box-shadow: 0 0 0 3px rgba(v.$color-primary, 0.2);
+        }
+    }
+
+    // Button (بدون @extend - أفضل أداء)
+    &__btn {
+        padding: 0.8rem 1.5rem;
+        border: none;
+        border-radius: v.$border-radius;
+        background-color: v.$color-primary;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+
+        &:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+
+        &:focus-visible {
+            outline: 2px solid v.$color-primary;
+            outline-offset: 3px;
+        }
+    }
+
+    // Bottom
+    &__bottom {
+        margin-block-start: (v.$spacing-unit * 6);
+        padding-block: (v.$spacing-unit * 3);
+        border-top: 1px solid rgba(v.$color-white, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        color: rgba(v.$color-white, 0.5);
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            gap: (v.$spacing-unit * 2);
+            text-align: center;
+        }
+    }
+
+    &__copyright {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+}
+
+/* Dark mode override */
+[data-theme="dark"] .footer {
+    background-color: #0a0f1a;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .footer * {
+        transition: none !important;
+        transform: none !important;
+    }
+}

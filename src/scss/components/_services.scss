@@ -1,0 +1,252 @@
+@use '../abstracts/variables' as v;
+
+// =========================
+// Services Section
+// =========================
+
+.services {
+    padding-block: (v.$spacing-unit * 10);
+    background-color: v.$color-white;
+    transition: background-color 0.3s ease;
+
+    // =========================
+    // Header
+    // =========================
+    &__header {
+        text-align: center;
+        margin-inline: auto;
+        max-width: 60ch;
+        margin-block-end: (v.$spacing-unit * 6);
+    }
+
+    &__title {
+        font-family: v.$font-heading;
+        font-size: clamp(2rem, 5vw, 3rem);
+        color: v.$color-dark;
+        margin-block-end: v.$spacing-unit;
+        font-weight: 800;
+        line-height: 1.2;
+
+        span {
+            color: v.$color-primary;
+        }
+    }
+
+    &__subtitle {
+        font-family: v.$font-main;
+        color: v.$color-grey;
+        font-size: v.$font-size-lg;
+        line-height: 1.6;
+    }
+
+    // =========================
+    // Grid
+    // =========================
+    &__grid {
+        display: grid;
+        gap: (v.$spacing-unit * 3);
+        grid-template-columns: 1fr;
+
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: 1024px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    // =========================
+    // Card
+    // =========================
+    &__card {
+        background-color: v.$color-light;
+        padding: (v.$spacing-unit * 3);
+        border-radius: v.$border-radius * 2;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+
+        // performance optimized transitions
+        transition: transform v.$ease-premium 0.4s,
+                    box-shadow 0.4s ease,
+                    background-color 0.3s ease;
+
+        will-change: auto;
+
+        // hover state
+        &:hover {
+            will-change: transform, box-shadow;
+            transform: translateY(-10px);
+            background-color: v.$color-white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: v.$color-primary;
+        }
+
+        // active press feedback
+        &:active {
+            transform: translateY(-6px);
+        }
+
+        // =========================
+        // Featured Card
+        // =========================
+        &--featured {
+            background-color: v.$color-primary;
+            border-color: v.$color-primary;
+            color: v.$color-white;
+
+            .services__card-icon {
+                background-color: rgba(v.$color-white, 0.2);
+                color: v.$color-white;
+            }
+
+            .services__card-title {
+                color: v.$color-white;
+            }
+
+            .services__card-text {
+                color: rgba(255, 255, 255, 0.9);
+            }
+
+            &:hover {
+                background-color: color-mix(in srgb, v.$color-primary 90%, black);
+            }
+        }
+
+        // =========================
+        // Icon
+        // =========================
+        &-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(v.$color-primary, 0.1);
+            color: v.$color-primary;
+            border-radius: v.$border-radius;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-block-end: (v.$spacing-unit * 2);
+            transition: transform 0.3s v.$ease-premium;
+
+            &:hover {
+                transform: scale(1.1) rotate(3deg);
+            }
+        }
+
+        // =========================
+        // Text
+        // =========================
+        &-title {
+            font-family: v.$font-heading;
+            font-size: v.$font-size-xl;
+            color: v.$color-dark;
+            margin-block-end: v.$spacing-unit;
+            font-weight: 700;
+        }
+
+        &-text {
+            font-family: v.$font-main;
+            color: v.$color-grey;
+            font-size: v.$font-size-base;
+            line-height: 1.6;
+            margin-block-end: (v.$spacing-unit * 3);
+        }
+
+        // =========================
+        // Link
+        // =========================
+        &-link {
+            font-weight: 600;
+            color: v.$color-primary;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            padding: 0.3rem 0;
+
+            transition: color 0.3s ease, transform 0.2s ease;
+
+            &:focus-visible {
+                outline: 2px solid v.$color-primary;
+                outline-offset: 3px;
+                border-radius: 2px;
+            }
+
+            // active feedback
+            &:active {
+                transform: scale(0.97);
+            }
+
+            // arrow element
+            &-arrow {
+                margin-inline-start: 5px;
+                display: inline-block;
+                transition: transform 0.3s v.$ease-premium;
+            }
+
+            // hover arrow animation (FIXED selector)
+            &:hover &-arrow {
+                transform: translateX(4px);
+            }
+
+            &:hover {
+                color: color-mix(in srgb, v.$color-primary 80%, black);
+            }
+        }
+    }
+}
+
+// =========================
+// Dark Mode
+// =========================
+
+[data-theme="dark"] .services {
+    background-color: v.$color-dark;
+
+    &__title {
+        color: v.$color-white;
+    }
+
+    &__subtitle {
+        color: v.$color-grey;
+    }
+
+    &__card {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.1);
+        color: v.$color-white;
+
+        &-title {
+            color: v.$color-white;
+        }
+
+        &-text {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        &-link {
+            font-weight: 700;
+        }
+    }
+}
+
+// =========================
+// Accessibility
+// =========================
+
+@media (prefers-reduced-motion: reduce) {
+    .services__card,
+    .services__card-icon,
+    .services__card-link-arrow {
+        transition: none !important;
+        transform: none !important;
+        animation: none !important;
+    }
+}

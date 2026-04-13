@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>About Us | Lumina Premium Beauty Salon</title>
+
+    <!-- Vite Entry Point -->
+    <script type="module" src="./main.js"></script>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR (Consistent with Home)
+    ========================= -->
+    <nav class="navbar" aria-label="Main Navigation">
+        <div class="navbar__container">
+
+            <a href="index.html" class="navbar__logo">Lumina</a>
+
+            <ul class="navbar__list"> 
+                <li class="navbar__item">
+                    <a href="/" class="navbar__link">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="about.html" class="navbar__link navbar__link--active">About</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="services.html" class="navbar__link">Services</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="contact.html" class="navbar__link">Contact</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <!-- =========================
+         ABOUT HERO
+    ========================= -->
+    <header class="about__hero">
+        <div class="container">
+            <h1 class="about__title">Our Story</h1>
+            <p class="about__subtitle">
+                Discover the passion behind Lumina and our commitment to your natural beauty and radiance.
+            </p>
+        </div>
+    </header>
+
+    <!-- =========================
+         OUR STORY SECTION
+    ========================= -->
+    <section class="section">
+        <div class="container">
+            <div class="about__story">
+                
+                <!-- Content Side -->
+                <div class="about__story-content">
+                    <h2>Crafting Beauty with Passion</h2>
+                    <p>
+                        Founded in 2010, Lumina started as a small boutique salon with one simple mission: 
+                        to provide a sanctuary of peace and luxury for every woman. We believe beauty is 
+                        not just about a look, but a feeling of confidence and radiance.
+                    </p>
+                    <p>
+                        Over a decade, we've evolved into a premier destination, combining organic 
+                        ingredients with the latest global trends in skincare and hair styling, 
+                        ensuring that every visit is a transformative experience.
+                    </p>
+                </div>
+
+                <!-- Visual Side -->
+                <div class="about__story-image">
+                    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80" 
+                         alt="Lumina Salon Interior" 
+                         loading="lazy" 
+                         decoding="async">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================
+         CORE VALUES SECTION
+    ========================= -->
+    <section class="section" style="background-color: var(--bg-light, #f9fafb);">
+        <div class="container">
+            
+            <div class="about__header" style="text-align: center; margin-bottom: 4rem;">
+                <h2 class="about__title" style="font-family: var(--font-heading); font-size: 2.5rem; color: var(--text);">
+                    Our Core <span style="color: var(--primary);">Values</span>
+                </h2>
+            </div>
+
+            <div class="about__values-grid">
+                <!-- Value 1 -->
+                <div class="about__value-card">
+                    <span class="about__value-card-icon">🌿</span>
+                    <h3 class="about__value-card-title">100% Organic</h3>
+                    <p class="about__value-card-text">
+                        We only use eco-friendly, organic products that respect your skin and the planet.
+                    </p>
+                </div>
+
+                <!-- Value 2 -->
+                <div class="about__value-card">
+                    <span class="about__value-card-icon">💎</span>
+                    <h3 class="about__value-card-title">Premium Quality</h3>
+                    <p class="about__value-card-text">
+                        Every treatment is a royal experience, designed to give you the most refined results.
+                    </p>
+                </div>
+
+                <!-- Value 3 -->
+                <div class="about__value-card">
+                    <span class="about__value-card-icon">🎓</span>
+                    <h3 class="about__value-card-title">Expert Stylists</h3>
+                    <p class="about__value-card-text">
+                        Our team is internationally certified and stays updated with the latest beauty trends.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================
+         TEAM SECTION
+    ========================= -->
+    <section class="section">
+        <div class="container">
+            <div class="about__header" style="text-align: center; margin-bottom: 4rem;">
+                <h2 class="about__title" style="font-family: var(--font-heading); font-size: 2.5rem; color: var(--text);">
+                    Meet Our <span style="color: var(--primary);">Experts</span>
+                </h2>
+            </div>
+
+            <div class="about__team-grid">
+                <!-- Member 1 -->
+                <div class="about__team-card">
+                    <div class="about__team-card-img-wrapper">
+                        <img src="https://i.pravatar.cc/300?u=10" alt="Elena Rose" loading="lazy">
+                    </div>
+                    <h3 class="about__team-card-name">Elena Rose</h3>
+                    <span class="about__team-card-role">Master Colorist</span>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="about__team-card">
+                    <div class="about__team-card-img-wrapper">
+                        <img src="https://i.pravatar.cc/300?u=11" alt="Sophia Lee" loading="lazy">
+                    </div>
+                    <h3 class="about__team-card-name">Sophia Lee</h3>
+                    <span class="about__team-card-role">Skin Care Expert</span>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="about__team-card">
+                    <div class="about__team-card-img-wrapper">
+                        <img src="https://i.pravatar.cc/300?u=12" alt="Mia Wong" loading="lazy">
+                    </div>
+                    <h3 class="about__team-card-name">Mia Wong</h3>
+                    <span class="about__team-card-role">Nail Artist</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================
+         FOOTER (Consistent with Home)
+    ========================= -->
+    <footer class="footer">
+        <div class="footer__container">
+
+            <div class="footer__column">
+                <a href="#" class="navbar__logo">Lumina</a>
+                <p class="footer__brand-text">
+                    Luxury beauty experience with modern care and premium treatments.
+                </p>
+            </div>
+
+            <div class="footer__column">
+                <h4 class="footer__title">Quick Links</h4>
+                <ul class="footer__links">
+                    <li><a href="index.html" class="footer__link">Home</a></li>
+                    <li><a href="about.html" class="footer__link">About</a></li>
+                    <li><a href="services.html" class="footer__link">Services</a></li>
+                    <li><a href="contact.html" class="footer__link">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__column">
+                <h4 class="footer__title">Newsletter</h4>
+                <form class="footer__form">
+                    <input type="email" class="footer__input" placeholder="Your Email">
+                    <button class="footer__btn">Join</button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="footer__bottom container">
+            <p>&copy; <span id="year"></span> Lumina. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+```__

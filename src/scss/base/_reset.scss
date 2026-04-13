@@ -1,0 +1,30 @@
+/* مسح الهوامش الافتراضية */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* تحسين ظهور الصور */
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* تحسين مظهر القوائم */
+ul, ol {
+    list-style: none;
+}
+
+/* إزالة التسطير من الروابط (سنضيفه نحن لاحقاً) */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* تحسين مظهر الأزرار */
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+}

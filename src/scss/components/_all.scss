@@ -1,0 +1,358 @@
+@use '../abstracts/variables' as v;
+
+/* =========================
+   DESIGN TOKENS
+========================= */
+:root {
+    --bg: #{v.$color-white};
+    --text: #{v.$color-dark};
+    --muted: #{v.$color-grey};
+    --primary: #{v.$color-primary};
+    --text-rgb: 0, 0, 0;
+}
+
+[data-theme="dark"] {
+    --bg: #{v.$color-dark};
+    --text: #{v.$color-white};
+    --muted: rgba(255,255,255,0.7);
+    --primary: #{v.$color-primary};
+    --text-rgb: 255, 255, 255;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding-block: 20px;
+
+    /* FIX: no more transition: all */
+    transition: 
+        background-color 0.3s ease,
+        padding-block 0.3s ease,
+        box-shadow 0.3s ease;
+
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+
+    &--scrolled {
+        padding-block: 12px;
+        background-color: rgba(255,255,255,0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    &__container {
+        max-width: 1200px;
+        width: 100%;
+        margin-inline: auto;
+        display: flex;
+        justify-content: space-between;
+        padding-inline: (v.$spacing-unit * 2);
+    }
+
+    &__logo {
+        font-family: v.$font-heading;
+        font-size: v.$font-size-xl;
+        font-weight: 800;
+        color: var(--primary);
+        text-decoration: none;
+
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: scale(1.05) rotate(-1deg);
+        }
+    }
+
+    &__link {
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 500;
+        position: relative;
+
+        transition: color 0.25s ease;
+
+        will-change: transform;
+
+        &:hover {
+            color: var(--primary);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        &:hover::after {
+            transform: scaleX(1);
+        }
+    }
+}
+
+/* =========================
+   HERO
+========================= */
+.hero {
+    min-height: calc(100vh - 80px);
+    min-height: calc(100dvh - 80px);
+    display: flex;
+    align-items: center;
+    padding-block: (v.$spacing-unit * 10);
+    position: relative;
+    overflow: hidden;
+
+    &__bg-shape {
+        position: absolute;
+        z-index: -1;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.3;
+        mix-blend-mode: multiply;
+
+        will-change: transform;
+
+        &--primary {
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            top: -10%;
+            right: -5%;
+        }
+
+        &--secondary {
+            width: 300px;
+            height: 300px;
+            background: v.$color-secondary;
+            bottom: 10%;
+            left: -5%;
+        }
+    }
+
+    &__container {
+        @extend .container;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: (v.$spacing-unit * 4);
+
+        @media (min-width: 1024px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    &__content {
+        animation: fadeInUp 0.7s ease both;
+
+        will-change: transform, opacity;
+    }
+
+    &__title {
+        font-family: v.$font-heading;
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        color: var(--text);
+        font-weight: 800;
+        line-height: 1.1;
+
+        span {
+            color: var(--primary);
+        }
+    }
+
+    &__description {
+        color: var(--muted);
+        font-size: v.$font-size-lg;
+        max-width: 60ch;
+        margin-block: v.$spacing-unit * 2;
+    }
+
+    &__visual-image {
+        width: 100%;
+        border-radius: v.$border-radius * 3;
+        box-shadow: v.$shadow-lg;
+        transition: transform 0.4s ease;
+
+        will-change: transform;
+
+        &:hover {
+            transform: scale(1.02) rotate(-1deg);
+        }
+    }
+}
+
+/* =========================
+   SERVICES
+========================= */
+.services {
+
+    &__grid {
+        display: grid;
+        gap: (v.$spacing-unit * 3);
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    &__card {
+        background: var(--bg);
+        padding: (v.$spacing-unit * 3);
+        border-radius: v.$border-radius * 2;
+        border: 1px solid rgba(0,0,0,0.05);
+
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+        will-change: transform;
+
+        &:hover {
+            will-change: transform, box-shadow;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: var(--primary);
+        }
+
+        &-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(var(--text-rgb), 0.05);
+            color: var(--primary);
+            border-radius: v.$border-radius;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-block-end: v.$spacing-unit * 2;
+        }
+
+        &-title {
+            color: var(--text);
+            font-family: v.$font-heading;
+        }
+
+        &-text {
+            color: var(--muted);
+        }
+
+        &-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+
+            &:focus-visible {
+                outline: 2px solid var(--primary);
+                outline-offset: 3px;
+            }
+
+            &:hover .services__card-link-arrow {
+                transform: translateX(4px);
+            }
+
+            &-arrow {
+                margin-inline-start: 5px;
+                transition: transform 0.3s ease;
+                display: inline-block;
+            }
+        }
+    }
+}
+
+/* =========================
+   TESTIMONIALS
+========================= */
+.testimonials {
+
+    &__card {
+        background: rgba(var(--text-rgb), 0.06);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+
+        border: 1px solid rgba(var(--text-rgb), 0.1);
+
+        padding: (v.$spacing-unit * 3);
+        border-radius: v.$border-radius * 2;
+
+        transition: transform 0.4s ease;
+
+        will-change: transform;
+
+        &:hover {
+            transform: translateY(-10px);
+            background: rgba(var(--text-rgb), 0.08);
+        }
+    }
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+    background: v.$color-dark;
+    color: white;
+    padding-block: (v.$spacing-unit * 6);
+
+    &__container {
+        @extend .container;
+        display: grid;
+        gap: (v.$spacing-unit * 6);
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    &__link {
+        color: rgba(255,255,255,0.7);
+        text-decoration: none;
+
+        transition: color 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px;
+        }
+    }
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}

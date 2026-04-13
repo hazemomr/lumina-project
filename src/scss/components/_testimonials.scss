@@ -1,0 +1,241 @@
+// _testimonials.scss
+@use '../abstracts/variables' as v;
+
+.testimonials {
+    padding-block: (v.$spacing-unit * 10);
+    background-color: v.$color-light;
+    position: relative;
+    overflow: hidden;
+
+    // =========================
+    // Background accents (Decorative)
+    // =========================
+    &__bg-accent {
+        position: absolute;
+        z-index: 0;
+        pointer-events: none;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.25;
+        will-change: transform;
+
+        &--top {
+            top: 5%;
+            right: -10%;
+            background-color: v.$color-primary;
+        }
+
+        &--bottom {
+            bottom: 5%;
+            left: -10%;
+            background-color: v.$color-secondary;
+        }
+    }
+
+    // =========================
+    // Header
+    // =========================
+    &__header {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        margin-inline: auto;
+        max-width: 60ch;
+        margin-block-end: (v.$spacing-unit * 6);
+    }
+
+    &__title {
+        font-family: v.$font-heading;
+        font-size: clamp(2rem, 5vw, 3rem);
+        color: v.$color-dark;
+        margin-block-end: v.$spacing-unit;
+        font-weight: 800;
+        line-height: 1.2;
+
+        span {
+            color: v.$color-primary;
+        }
+    }
+
+    &__subtitle {
+        font-family: v.$font-main;
+        color: v.$color-grey;
+        font-size: v.$font-size-lg;
+        line-height: 1.6;
+    }
+
+    // =========================
+    // Grid
+    // =========================
+    &__grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        gap: (v.$spacing-unit * 3);
+        grid-template-columns: 1fr;
+
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: 1024px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    // =========================
+    // Card (Advanced Glassmorphism)
+    // =========================
+    &__card {
+        // ✅ تحسين: استخدام متغيرات الألوان بدلاً من قيم RGB الثابتة لتوحيد الثيم
+        background-color: rgba(v.$color-white, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(v.$color-white, 0.3);
+        border-radius: v.$border-radius * 2;
+
+        padding: (v.$spacing-unit * 3);
+        position: relative;
+
+        transition: transform v.$ease-premium 0.4s,
+                    box-shadow 0.4s ease,
+                    background-color 0.3s ease,
+                    border-color 0.3s ease;
+
+        will-change: auto;
+
+        &:hover {
+            // ✅ تحسين: تفعيل GPU Hint فقط عند التفاعل لتحسين الأداء
+            will-change: transform, box-shadow;
+            transform: translateY(-10px);
+            background-color: rgba(v.$color-white, 0.8);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+            border-color: rgba(v.$color-primary, 0.3);
+
+            // ✅ تحسين: Micro-interaction للأفاتار عند تمرير الماوس على البطاقة
+            .testimonials__card-avatar {
+                transform: scale(1.1);
+            }
+        }
+
+        &:active {
+            transform: translateY(-5px);
+        }
+
+        // =========================
+        // User Info
+        // =========================
+        &-user-info {
+            display: flex;
+            align-items: center;
+            gap: v.$spacing-unit;
+            margin-block-end: (v.$spacing-unit * 2);
+        }
+
+        &-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid v.$color-white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s v.$ease-premium; // انتقال ناعم للتكبير
+        }
+
+        &-name {
+            font-family: v.$font-heading;
+            font-weight: 700;
+            color: v.$color-dark;
+            font-size: 1.1rem;
+        }
+
+        &-role {
+            font-size: 0.85rem;
+            color: v.$color-grey;
+        }
+
+        // =========================
+        // Rating
+        // =========================
+        &-rating {
+            display: flex;
+            gap: 4px;
+            margin-block-end: v.$spacing-unit;
+            color: v.$color-accent;
+        }
+
+        // =========================
+        // Text
+        // =========================
+        &-text {
+            font-family: v.$font-main;
+            color: v.$color-text;
+            font-size: v.$font-size-base;
+            line-height: 1.7;
+            font-style: italic;
+            position: relative;
+
+            &::before {
+                content: "“";
+                position: absolute;
+                top: -15px;
+                left: -10px;
+                font-size: 3.5rem;
+                color: rgba(v.$color-primary, 0.12);
+                pointer-events: none;
+            }
+        }
+    }
+}
+
+// =========================
+// Dark Mode (High-End Glass Effect)
+// =========================
+
+[data-theme="dark"] .testimonials {
+    background-color: v.$color-dark;
+
+    &__title {
+        color: v.$color-white;
+    }
+
+    &__subtitle {
+        color: v.$color-grey;
+    }
+
+    &__card {
+        
+        background-color: rgba(v.$color-dark, 0.6);
+        border: 1px solid rgba(v.$color-white, 0.08);
+
+        &:hover {
+            background-color: rgba(v.$color-dark, 0.75);
+            border-color: rgba(v.$color-primary, 0.4);
+        }
+
+        &-name {
+            color: v.$color-white;
+        }
+
+        &-text {
+            color: rgba(255, 255, 255, 0.78);
+        }
+    }
+}
+
+// =========================
+// Accessibility & Motion
+// =========================
+
+@media (prefers-reduced-motion: reduce) {
+    .testimonials__card,
+    .testimonials__card-avatar {
+        transition: none !important;
+
+        &:hover {
+            transform: none !important;
+        }
+    }
+}

@@ -1,0 +1,68 @@
+@use '../abstracts/variables' as *;
+
+// =========================
+// 1. Global Reset (Modern Approach)
+// =========================
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: $font-main;
+    font-size: $font-size-base;
+    line-height: 1.6;
+    color: $color-text;
+    background-color: $color-white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh; // Ensuring the body fills the screen
+    display: flex;
+    flex-direction: column;
+}
+
+// =========================
+// 2. Base Element Styles
+// =========================
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s $ease-premium;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font: inherit;
+}
+
+// =========================
+// 3. Layout Foundation (Logical Properties)
+// =========================
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto; // Modern replacement for margin: 0 auto
+    padding-inline: 20px; // Modern replacement for padding: 0 20px
+}
+
+.section {
+    padding-block: (1rem * 10); // Standard vertical spacing for all sections
+}
