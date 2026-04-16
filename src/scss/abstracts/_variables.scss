@@ -1,36 +1,239 @@
-// 1. Colors (الألوان)
-// سنستخدم نظام الـ Opacity لسهولة التحكم في الشفافية
-$color-primary: #2563eb;    // الأزرق الرئيسي
-$color-secondary: #7c3aed;  // البنفسجي الثانوي
-$color-accent: #f59e0b;     // البرتقالي للفت الانتباه (Accent)
+// ==========================================
+// _variables.scss
+// نظام التصميم الكامل لموقع Lumina
+// ==========================================
 
-$color-success: #10b981;    // الأخضر للنجاح
-$color-error: #ef4444;      // الأحمر للخطأ
-$color-warning: #f59e0b;    // الأصفر للتحذير
+// ==========================================
+// 1. Colors
+// ==========================================
 
-$color-white: #ffffff;
-$color-light: #f8fafc;
-$color-dark: #0f172a;
-$color-grey: #64748b;
-$color-text: #334155;
 
-// 2. Typography (الخطوط)
-$font-main: 'Inter', sans-serif;
-$font-heading: 'Poppins', sans-serif;
+// Corail Salon Colors
+$color-primary: #bfa16b !default; // Gold
+$color-primary-dark: #a88c5a !default;
+$color-primary-light: #f7f7f7 !default; // Light background
 
-$font-size-base: 16px;
-$font-size-sm: 0.875rem;
-$font-size-lg: 1.25rem;
-$font-size-xl: 2rem;
-$font-size-xxl: 3rem;
+$color-secondary: #222222 !default; // Dark text
+$color-accent: #fff8e1 !default; // Accent background
 
-// 3. Spacing & Sizing (المسافات)
-$spacing-unit: 1rem; // الوحدة الأساسية للمسافات
-$border-radius: 8px;
-$transition-speed: 0.3s ease;
+// Pricing Colors (if needed)
+$color-price-gold: #bfa16b !default;
+$color-price-gold-dark: #a88c5a !default;
+$color-price-gold-light: #f7f7f7 !default;
 
-// 4. Shadows (الظلال)
-$shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+// Status Colors
+$color-success: #10b981 !default;
+$color-error: #ef4444 !default;
+$color-warning: #f59e0b !default;
+$color-info: #3b82f6 !default;
 
-// 5. Easing (منحنيات الحركة)
-$ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+
+$color-white: #fff !default;
+$color-light: #f7f7f7 !default;
+$color-grey-light: #ececec !default;
+$color-grey: #bdbdbd !default;
+$color-grey-dark: #222 !default;
+$color-dark: #222 !default;
+$color-black: #000 !default;
+
+// Text Colors
+$color-text-primary: #222 !default;
+$color-text-secondary: #bfa16b !default;
+
+// Fonts
+$font-primary: 'Montserrat', 'Poppins', Arial, sans-serif !default;
+$color-text-muted: #94a3b8 !default;
+$color-text-inverse: #ffffff !default;
+$color-text: $color-text-primary !default;
+
+// Dark Mode Colors
+$dark-bg-primary: #0f172a !default;
+$dark-bg-secondary: #1e293b !default;
+$dark-bg-card: rgba(30, 41, 59, 0.95) !default;
+$dark-text-primary: #f1f5f9 !default;
+$dark-text-secondary: #cbd5e1 !default;
+
+// ==========================================
+// 2. Typography
+// ==========================================
+
+// Font Families
+$font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !default;
+$font-heading: 'Playfair Display', 'Poppins', serif !default;
+$font-alt: 'Poppins', sans-serif !default;
+
+// Font Sizes
+$font-size-xs: 0.75rem !default;
+$font-size-sm: 0.875rem !default;
+$font-size-base: 1rem !default;
+$font-size-md: 1.125rem !default;
+$font-size-lg: 1.25rem !default;
+$font-size-xl: 1.5rem !default;
+$font-size-2xl: 1.875rem !default;
+$font-size-3xl: 2.25rem !default;
+$font-size-4xl: 3rem !default;
+$font-size-5xl: 3.75rem !default;
+
+// Font Weights
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-semibold: 600 !default;
+$font-weight-bold: 700 !default;
+$font-weight-extrabold: 800 !default;
+
+// Line Heights
+$line-height-tight: 1.2 !default;
+$line-height-normal: 1.5 !default;
+$line-height-relaxed: 1.75 !default;
+
+// Letter Spacing
+$letter-spacing-tight: -0.02em !default;
+$letter-spacing-normal: 0 !default;
+$letter-spacing-wide: 0.05em !default;
+
+// ==========================================
+// 3. Spacing System (8px system)
+// ==========================================
+
+// Base spacing values
+$spacing-3xs: 0.25rem !default;   // 4px
+$spacing-2xs: 0.5rem !default;    // 8px
+$spacing-xs: 0.75rem !default;    // 12px
+$spacing-sm: 1rem !default;       // 16px
+$spacing-md: 1.5rem !default;     // 24px
+$spacing-lg: 2rem !default;       // 32px
+$spacing-xl: 2.5rem !default;     // 40px
+$spacing-2xl: 3rem !default;      // 48px
+$spacing-3xl: 4rem !default;      // 64px
+$spacing-4xl: 5rem !default;      // 80px
+$spacing-5xl: 6rem !default;      // 96px
+
+// Default spacing unit (8px)
+$spacing-unit: $spacing-2xs !default;
+
+// Container Widths
+$container-sm: 640px !default;
+$container-md: 768px !default;
+$container-lg: 1024px !default;
+$container-xl: 1280px !default;
+$container-2xl: 1536px !default;
+
+// Grid Gaps
+$gap-sm: 1rem !default;
+$gap-md: 1.5rem !default;
+$gap-lg: 2rem !default;
+$gap-xl: 3rem !default;
+
+// ==========================================
+// 4. Borders & Radius
+// ==========================================
+
+$border-radius-none: 0 !default;
+$border-radius-sm: 0.25rem !default;
+$border-radius-md: 0.5rem !default;
+$border-radius-lg: 1rem !default;
+$border-radius-xl: 1.5rem !default;
+$border-radius-2xl: 2rem !default;
+$border-radius-3xl: 2.5rem !default;
+$border-radius-full: 9999px !default;
+
+$border-width-thin: 1px !default;
+$border-width-normal: 2px !default;
+$border-width-thick: 3px !default;
+
+// 🆕 Button specific
+$btn-border-radius: 40px !default;
+
+// ==========================================
+// 5. Shadows
+// ==========================================
+
+$shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05) !default;
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1) !default;
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07) !default;
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1) !default;
+$shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1) !default;
+$shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.15) !default;
+$shadow-3xl: 0 35px 60px rgba(0, 0, 0, 0.2) !default;
+
+$shadow-primary: 0 10px 25px rgba($color-primary, 0.25) !default;
+$shadow-primary-lg: 0 20px 40px rgba($color-primary, 0.3) !default;
+$shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06) !default;
+
+// 🆕 Button hover shadow
+$shadow-btn-hover: 0 8px 16px rgba(0, 0, 0, 0.08) !default;
+
+// ==========================================
+// 6. Transitions & Easing
+// ==========================================
+
+$transition-fast: 150ms ease !default;
+$transition-normal: 250ms ease !default;
+$transition-slow: 350ms ease !default;
+$transition-slower: 500ms ease !default;
+
+$ease-linear: cubic-bezier(0, 0, 1, 1) !default;
+$ease-in: cubic-bezier(0.4, 0, 1, 1) !default;
+$ease-out: cubic-bezier(0, 0, 0.2, 1) !default;
+$ease-in-out: cubic-bezier(0.4, 0, 0.2, 1) !default;
+$ease-premium: cubic-bezier(0.22, 1, 0.36, 1) !default;
+$ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55) !default;
+
+// ==========================================
+// 7. Z-Index
+// ==========================================
+
+$z-negative: -1 !default;
+$z-elevate: 1 !default;
+$z-dropdown: 10 !default;
+$z-sticky: 20 !default;
+$z-fixed: 30 !default;
+$z-modal-backdrop: 40 !default;
+$z-modal: 50 !default;
+$z-popover: 60 !default;
+$z-tooltip: 70 !default;
+$z-toast: 80 !default;
+$z-preloader: 9999 !default;
+
+// ==========================================
+// 8. Breakpoints
+// ==========================================
+
+$breakpoint-xs: 480px !default;
+$breakpoint-sm: 640px !default;
+$breakpoint-md: 768px !default;
+$breakpoint-lg: 1024px !default;
+$breakpoint-xl: 1280px !default;
+$breakpoint-2xl: 1536px !default;
+
+// ==========================================
+// 9. Opacity
+// ==========================================
+
+$opacity-0: 0 !default;
+$opacity-25: 0.25 !default;
+$opacity-50: 0.5 !default;
+$opacity-75: 0.75 !default;
+$opacity-100: 1 !default;
+
+// ==========================================
+// 10. Blur Effects
+// ==========================================
+
+$blur-sm: blur(4px) !default;
+$blur-md: blur(8px) !default;
+$blur-lg: blur(12px) !default;
+$blur-xl: blur(16px) !default;
+$blur-2xl: blur(24px) !default;
+
+// ==========================================
+// 11. Export for JS
+// ==========================================
+
+:export {
+  primary: $color-primary;
+  secondary: $color-secondary;
+  dark: $color-dark;
+  light: $color-light;
+}

@@ -15,5 +15,8 @@
   "devDependencies": {
     "sass": "^1.99.0",
     "vite": "^8.0.8"
+  },
+  "dependencies": {
+    "swiper": "^12.1.3"
   }
 }

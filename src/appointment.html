@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment | Lumina Premium Salon</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Flatpickr (تقويم تفاعلي) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
+
+    <script type="module" src="./main.js"></script>
+</head>
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar" aria-label="Main Navigation">
+    <div class="navbar__container">
+        <a href="index.html" class="navbar__logo">Lumina</a>
+        <ul class="navbar__list">
+            <li class="navbar__item"><a href="index.html" class="navbar__link">Home</a></li>
+            <li class="navbar__item"><a href="about.html" class="navbar__link">About</a></li>
+            <li class="navbar__item"><a href="services.html" class="navbar__link">Services</a></li>
+            <li class="navbar__item"><a href="contact.html" class="navbar__link">Contact</a></li>
+            <li class="navbar__item"><a href="appointment.html" class="navbar__link navbar__link--active">Book</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ========== APPOINTMENT PAGE ========== -->
+<div class="appointment-page">
+
+    <header class="appointment-page__header">
+        <div class="container">
+            <h1 class="appointment-page__title">Book Your <span>Appointment</span></h1>
+            <p class="appointment-page__subtitle">
+                Choose your preferred service, date, and time. We'll take care of the rest.
+            </p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="appointment-page__grid">
+
+            <!-- LEFT SIDE: FORM -->
+            <div class="appointment-page__form-wrapper">
+                <form class="appointment-page__form" id="appointmentForm">
+                    
+                    <!-- Service Selection -->
+                    <div class="form-group">
+                        <label for="service">Select Service <span class="required">*</span></label>
+                        <div class="select-wrapper">
+                            <select id="service" required>
+                                <option value="" disabled selected>— Choose a service —</option>
+                                <option value="basic">💇 Basic Haircut - $49</option>
+                                <option value="premium">✨ Premium Glow Package - $99</option>
+                                <option value="royal">👑 Royal Luxury Experience - $199</option>
+                                <option value="bridal">💒 Bridal Makeup & Hair - $299</option>
+                                <option value="spa">🧖 Full Day Spa - $159</option>
+                            </select>
+                            <i class="fas fa-chevron-down select-icon"></i>
+                        </div>
+                    </div>
+
+                    <!-- Name -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name <span class="required">*</span></label>
+                            <input type="text" id="firstName" placeholder="Jane" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name <span class="required">*</span></label>
+                            <input type="text" id="lastName" placeholder="Doe" required>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" placeholder="jane@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="phone" placeholder="+1 (234) 567-8900" required>
+                        </div>
+                    </div>
+
+                    <!-- Date & Time Row -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="datePicker">Select Date <span class="required">*</span></label>
+                            <input type="text" id="datePicker" placeholder="Choose a date" readonly required>
+                        </div>
+                        <div class="form-group">
+                            <label for="timeSlot">Select Time <span class="required">*</span></label>
+                            <div class="time-slots" id="timeSlots">
+                                <button type="button" class="time-slot" data-time="09:00">09:00 AM</button>
+                                <button type="button" class="time-slot" data-time="10:00">10:00 AM</button>
+                                <button type="button" class="time-slot" data-time="11:00">11:00 AM</button>
+                                <button type="button" class="time-slot" data-time="12:00">12:00 PM</button>
+                                <button type="button" class="time-slot" data-time="13:00">01:00 PM</button>
+                                <button type="button" class="time-slot" data-time="14:00">02:00 PM</button>
+                                <button type="button" class="time-slot" data-time="15:00">03:00 PM</button>
+                                <button type="button" class="time-slot" data-time="16:00">04:00 PM</button>
+                                <button type="button" class="time-slot" data-time="17:00">05:00 PM</button>
+                                <button type="button" class="time-slot" data-time="18:00">06:00 PM</button>
+                            </div>
+                            <input type="hidden" id="selectedTime" required>
+                        </div>
+                    </div>
+
+                    <!-- Special Requests -->
+                    <div class="form-group">
+                        <label for="notes">Special Requests (Optional)</label>
+                        <textarea id="notes" placeholder="Any allergies, preferences, or special occasions? We'd love to know!"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button class="btn-submit" type="submit">
+                        <i class="fas fa-calendar-check"></i>
+                        Confirm Appointment
+                    </button>
+
+                    <div class="form-success" id="successMsg" style="display:none;">
+                        <i class="fas fa-check-circle"></i>
+                        Appointment booked successfully! We'll send a confirmation to your email. ✨
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- RIGHT SIDE: INFO & SUMMARY -->
+            <div class="appointment-page__info">
+                
+                <div class="appointment-page__summary-card">
+                    <h3><i class="fas fa-spa"></i> Your Selection</h3>
+                    <div class="summary-content">
+                        <div class="summary-row">
+                            <span>Service:</span>
+                            <strong id="summaryService">—</strong>
+                        </div>
+                        <div class="summary-row">
+                            <span>Date:</span>
+                            <strong id="summaryDate">—</strong>
+                        </div>
+                        <div class="summary-row">
+                            <span>Time:</span>
+                            <strong id="summaryTime">—</strong>
+                        </div>
+                        <div class="summary-divider"></div>
+                        <div class="summary-row total">
+                            <span>Total:</span>
+                            <strong id="summaryPrice">$0</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="appointment-page__info-card">
+                    <div class="appointment-page__info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="appointment-page__info-text">
+                        <h4>Duration</h4>
+                        <p>Most services take 45-90 minutes.<br>We'll confirm exact duration upon arrival.</p>
+                    </div>
+                </div>
+
+                <div class="appointment-page__info-card">
+                    <div class="appointment-page__info-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="appointment-page__info-text">
+                        <h4>Payment</h4>
+                        <p>Pay in-store after service.<br>Cash, Credit Card, Apple Pay accepted.</p>
+                    </div>
+                </div>
+
+                <div class="appointment-page__info-card">
+                    <div class="appointment-page__info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="appointment-page__info-text">
+                        <h4>Need Help?</h4>
+                        <p>Call us: <strong>+1 (234) 567-8900</strong><br>Email: booking@lumina-salon.com</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+    <div class="footer__container">
+        <div class="footer__column">
+            <a href="index.html" class="navbar__logo">Lumina</a>
+            <p class="footer__brand-text">Elevating your beauty experience with professional care and luxury treatments.</p>
+            <div class="footer__social-links">
+                <a href="#" class="footer__social-links-item"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="footer__social-links-item"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="footer__social-links-item"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="footer__social-links-item"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer__column">
+            <h4 class="footer__title">Quick Links</h4>
+            <ul class="footer__links">
+                <li><a href="index.html" class="footer__link">Home</a></li>
+                <li><a href="about.html" class="footer__link">About Us</a></li>
+                <li><a href="services.html" class="footer__link">Our Services</a></li>
+                <li><a href="contact.html" class="footer__link">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer__column">
+            <h4 class="footer__title">Our Speciality</h4>
+            <ul class="footer__links">
+                <li><a href="#" class="footer__link">Hair Styling</a></li>
+                <li><a href="#" class="footer__link">Skin Care</a></li>
+                <li><a href="#" class="footer__link">Nail Art</a></li>
+                <li><a href="#" class="footer__link">Luxury Spa</a></li>
+            </ul>
+        </div>
+        <div class="footer__column">
+            <h4 class="footer__title">Stay Updated</h4>
+            <div class="footer__newsletter">
+                <p class="footer__newsletter-text">Subscribe to get the latest beauty tips and offers.</p>
+                <form class="footer__form">
+                    <input type="email" class="footer__input" placeholder="Your Email Address" required>
+                    <button type="submit" class="footer__btn">Join</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer__bottom container">
+        <div class="footer__copyright">
+            <p>&copy; <span id="year"></span> Lumina Premium Salon. All rights reserved.</p>
+        </div>
+        <div class="footer__bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    // Initialize Flatpickr Calendar
+    flatpickr("#datePicker", {
+        minDate: "today",
+        maxDate: new Date().fp_incr(60),
+        dateFormat: "Y-m-d",
+        disable: [
+            function(date) {
+                // Disable Sundays
+                return date.getDay() === 0;
+            }
+        ],
+        locale: {
+            firstDayOfWeek: 1
+        },
+        onChange: function(selectedDates, dateStr, instance) {
+            document.getElementById('summaryDate').textContent = dateStr;
+            // Enable time slots after date selection
+            document.querySelectorAll('.time-slot').forEach(btn => {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                btn.style.cursor = 'pointer';
+            });
+        }
+    });
+
+    // Time slot selection
+    let selectedTimeSlot = null;
+    const timeSlots = document.querySelectorAll('.time-slot');
+    const selectedTimeInput = document.getElementById('selectedTime');
+    const summaryTime = document.getElementById('summaryTime');
+
+    timeSlots.forEach(slot => {
+        slot.addEventListener('click', function() {
+            // Remove active class from all
+            timeSlots.forEach(s => s.classList.remove('active'));
+            // Add active class to clicked
+            this.classList.add('active');
+            // Store selected time
+            const timeValue = this.getAttribute('data-time');
+            selectedTimeInput.value = timeValue;
+            summaryTime.textContent = this.textContent;
+            selectedTimeSlot = timeValue;
+        });
+    });
+
+    // Service selection and price mapping
+    const serviceSelect = document.getElementById('service');
+    const summaryService = document.getElementById('summaryService');
+    const summaryPrice = document.getElementById('summaryPrice');
+
+    const servicePrices = {
+        'basic': 49,
+        'premium': 99,
+        'royal': 199,
+        'bridal': 299,
+        'spa': 159
+    };
+
+    const serviceNames = {
+        'basic': '💇 Basic Haircut',
+        'premium': '✨ Premium Glow Package',
+        'royal': '👑 Royal Luxury Experience',
+        'bridal': '💒 Bridal Makeup & Hair',
+        'spa': '🧖 Full Day Spa'
+    };
+
+    serviceSelect.addEventListener('change', function() {
+        const value = this.value;
+        if (value && serviceNames[value]) {
+            summaryService.textContent = serviceNames[value];
+            summaryPrice.textContent = '$' + servicePrices[value];
+        } else {
+            summaryService.textContent = '—';
+            summaryPrice.textContent = '$0';
+        }
+    });
+
+    // Form submission
+    const form = document.getElementById('appointmentForm');
+    const submitBtn = form.querySelector('.btn-submit');
+    const successMsg = document.getElementById('successMsg');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get all required fields
+        const service = document.getElementById('service').value;
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const date = document.getElementById('datePicker').value;
+        const time = selectedTimeInput.value;
+        
+        // Validation
+        if (!service || !firstName || !lastName || !email || !phone || !date || !time) {
+            alert('Please fill in all required fields and select a date & time.');
+            return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+        
+        // Simulate submission
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Booking...';
+        
+        setTimeout(() => {
+            form.reset();
+            submitBtn.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            // Reset summary
+            summaryService.textContent = '—';
+            summaryDate.textContent = '—';
+            summaryTime.textContent = '—';
+            summaryPrice.textContent = '$0';
+            selectedTimeInput.value = '';
+            
+            // Reset time slots active class
+            timeSlots.forEach(s => s.classList.remove('active'));
+            
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.display = 'flex';
+                successMsg.style.display = 'none';
+            }, 3000);
+        }, 1500);
+    });
+    
+    // Disable time slots initially until date is selected
+    document.querySelectorAll('.time-slot').forEach(btn => {
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+        btn.style.cursor = 'not-allowed';
+    });
+</script>
+
+</body>
+</html>

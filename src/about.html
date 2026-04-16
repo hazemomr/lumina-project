@@ -1,103 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>About Us | Lumina Premium Beauty Salon</title>
 
-    <!-- Vite Entry Point -->
-    <script type="module" src="./main.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script type="module" src="./src/main.js"></script>
 </head>
 
 <body>
 
-    <!-- =========================
-         NAVBAR (Consistent with Home)
-    ========================= -->
-    <nav class="navbar" aria-label="Main Navigation">
-        <div class="navbar__container">
+    <!-- ==========================================
+         NAVBAR (Injected Component)
+         ========================================== -->
+    <div id="navbar-placeholder"></div>
 
-            <a href="index.html" class="navbar__logo">Lumina</a>
-
-            <ul class="navbar__list"> 
-                <li class="navbar__item">
-                    <a href="/" class="navbar__link">Home</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="about.html" class="navbar__link navbar__link--active">About</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="services.html" class="navbar__link">Services</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="contact.html" class="navbar__link">Contact</a>
-                </li>
-            </ul>
-
-        </div>
-    </nav>
-
-    <!-- =========================
-         ABOUT HERO
-    ========================= -->
+    <!-- ==========================================
+         ABOUT HERO SECTION
+         ========================================== -->
     <header class="about__hero">
         <div class="container">
-            <h1 class="about__title">Our Story</h1>
-            <p class="about__subtitle">
+            <h1 class="about__hero-title">Our <span>Story</span></h1>
+            <p class="about__hero-subtitle">
                 Discover the passion behind Lumina and our commitment to your natural beauty and radiance.
             </p>
         </div>
     </header>
 
-    <!-- =========================
+    <!-- ==========================================
          OUR STORY SECTION
-    ========================= -->
+         ========================================== -->
     <section class="section">
         <div class="container">
             <div class="about__story">
-                
-                <!-- Content Side -->
                 <div class="about__story-content">
                     <h2>Crafting Beauty with Passion</h2>
                     <p>
                         Founded in 2010, Lumina started as a small boutique salon with one simple mission: 
-                        to provide a sanctuary of peace and luxury for every woman. We believe beauty is 
-                        not just about a look, but a feeling of confidence and radiance.
+                        to provide a sanctuary of peace and luxury for every woman.
                     </p>
                     <p>
                         Over a decade, we've evolved into a premier destination, combining organic 
-                        ingredients with the latest global trends in skincare and hair styling, 
-                        ensuring that every visit is a transformative experience.
+                        ingredients with the latest global trends in skincare and hair styling.
                     </p>
                 </div>
-
-                <!-- Visual Side -->
                 <div class="about__story-image">
                     <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80" 
                          alt="Lumina Salon Interior" 
-                         loading="lazy" 
+                         loading="lazy"
                          decoding="async">
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- =========================
+    <!-- ==========================================
          CORE VALUES SECTION
-    ========================= -->
-    <section class="section" style="background-color: var(--bg-light, #f9fafb);">
+         ========================================== -->
+    <section class="about__values-section">
         <div class="container">
-            
-            <div class="about__header" style="text-align: center; margin-bottom: 4rem;">
-                <h2 class="about__title" style="font-family: var(--font-heading); font-size: 2.5rem; color: var(--text);">
-                    Our Core <span style="color: var(--primary);">Values</span>
-                </h2>
+            <div class="about__section-header">
+                <span class="section-tag">What Drives Us</span>
+                <h2>Our Core <span>Values</span></h2>
             </div>
 
             <div class="about__values-grid">
-                <!-- Value 1 -->
                 <div class="about__value-card">
                     <span class="about__value-card-icon">🌿</span>
                     <h3 class="about__value-card-title">100% Organic</h3>
@@ -106,7 +79,6 @@
                     </p>
                 </div>
 
-                <!-- Value 2 -->
                 <div class="about__value-card">
                     <span class="about__value-card-icon">💎</span>
                     <h3 class="about__value-card-title">Premium Quality</h3>
@@ -115,7 +87,6 @@
                     </p>
                 </div>
 
-                <!-- Value 3 -->
                 <div class="about__value-card">
                     <span class="about__value-card-icon">🎓</span>
                     <h3 class="about__value-card-title">Expert Stylists</h3>
@@ -127,22 +98,25 @@
         </div>
     </section>
 
-    <!-- =========================
+    <!-- ==========================================
          TEAM SECTION
-    ========================= -->
-    <section class="section">
+         ========================================== -->
+    <section class="about__team-section">
         <div class="container">
-            <div class="about__header" style="text-align: center; margin-bottom: 4rem;">
-                <h2 class="about__title" style="font-family: var(--font-heading); font-size: 2.5rem; color: var(--text);">
-                    Meet Our <span style="color: var(--primary);">Experts</span>
-                </h2>
+            <div class="about__section-header">
+                <span class="section-tag">Meet Our Experts</span>
+                <h2>The Faces Behind<br><span>The Magic</span></h2>
             </div>
 
             <div class="about__team-grid">
                 <!-- Member 1 -->
                 <div class="about__team-card">
                     <div class="about__team-card-img-wrapper">
-                        <img src="https://i.pravatar.cc/300?u=10" alt="Elena Rose" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop" 
+                             alt="Elena Rose"
+                             loading="lazy"
+                             width="200"
+                             height="200">
                     </div>
                     <h3 class="about__team-card-name">Elena Rose</h3>
                     <span class="about__team-card-role">Master Colorist</span>
@@ -151,7 +125,11 @@
                 <!-- Member 2 -->
                 <div class="about__team-card">
                     <div class="about__team-card-img-wrapper">
-                        <img src="https://i.pravatar.cc/300?u=11" alt="Sophia Lee" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop" 
+                             alt="Sophia Lee"
+                             loading="lazy"
+                             width="200"
+                             height="200">
                     </div>
                     <h3 class="about__team-card-name">Sophia Lee</h3>
                     <span class="about__team-card-role">Skin Care Expert</span>
@@ -160,7 +138,11 @@
                 <!-- Member 3 -->
                 <div class="about__team-card">
                     <div class="about__team-card-img-wrapper">
-                        <img src="https://i.pravatar.cc/300?u=12" alt="Mia Wong" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=200&h=200&fit=crop" 
+                             alt="Mia Wong"
+                             loading="lazy"
+                             width="200"
+                             height="200">
                     </div>
                     <h3 class="about__team-card-name">Mia Wong</h3>
                     <span class="about__team-card-role">Nail Artist</span>
@@ -169,44 +151,10 @@
         </div>
     </section>
 
-    <!-- =========================
-         FOOTER (Consistent with Home)
-    ========================= -->
-    <footer class="footer">
-        <div class="footer__container">
-
-            <div class="footer__column">
-                <a href="#" class="navbar__logo">Lumina</a>
-                <p class="footer__brand-text">
-                    Luxury beauty experience with modern care and premium treatments.
-                </p>
-            </div>
-
-            <div class="footer__column">
-                <h4 class="footer__title">Quick Links</h4>
-                <ul class="footer__links">
-                    <li><a href="index.html" class="footer__link">Home</a></li>
-                    <li><a href="about.html" class="footer__link">About</a></li>
-                    <li><a href="services.html" class="footer__link">Services</a></li>
-                    <li><a href="contact.html" class="footer__link">Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="footer__column">
-                <h4 class="footer__title">Newsletter</h4>
-                <form class="footer__form">
-                    <input type="email" class="footer__input" placeholder="Your Email">
-                    <button class="footer__btn">Join</button>
-                </form>
-            </div>
-
-        </div>
-
-        <div class="footer__bottom container">
-            <p>&copy; <span id="year"></span> Lumina. All rights reserved.</p>
-        </div>
-    </footer>
+    <!-- ==========================================
+         FOOTER (Injected Component)
+         ========================================== -->
+    <div id="footer-placeholder"></div>
 
 </body>
 </html>
-```__

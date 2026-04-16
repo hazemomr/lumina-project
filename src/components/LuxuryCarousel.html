@@ -1,0 +1,101 @@
+<!-- Luxury Beauty Services Carousel (Horizontal Sliding) -->
+<section class="luxury-carousel-section">
+  <div class="luxury-carousel__header">
+    <h2 class="luxury-carousel__title">Our Premium Beauty Services</h2>
+    <a href="#" class="luxury-carousel__all-btn">All Services →</a>
+  </div>
+  <div class="luxury-carousel__viewport">
+    <div class="luxury-carousel__track">
+      <!-- Card 1 -->
+      <div class="luxury-carousel__card">
+        <div class="luxury-carousel__img-wrap">
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="Facial" />
+        </div>
+        <div class="luxury-carousel__overlay">
+          <div class="luxury-carousel__content">
+            <h3 class="luxury-carousel__card-title">Facial</h3>
+            <p>Rejuvenate your skin with our customized facial treatments. Our beauty lounge offers a variety of facials designed to meet your specific skin care needs, leaving you with a radiant complexion.</p>
+            <a href="#" class="luxury-carousel__btn">Know More →</a>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="luxury-carousel__card">
+        <div class="luxury-carousel__img-wrap">
+          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80" alt="Massage" />
+        </div>
+        <div class="luxury-carousel__overlay">
+          <div class="luxury-carousel__content">
+            <h3 class="luxury-carousel__card-title">Massage</h3>
+            <p>Relax and unwind with our <b>smoothing massage services</b>. Our massage therapist offers a range of massage techniques to relieve stress and promote overall well-being.</p>
+            <a href="#" class="luxury-carousel__btn">Know More →</a>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="luxury-carousel__card">
+        <div class="luxury-carousel__img-wrap">
+          <img src="https://images.unsplash.com/photo-1512257752950-94c3d1d0b1e7?auto=format&fit=crop&w=600&q=80" alt="Waxing" />
+        </div>
+        <div class="luxury-carousel__overlay">
+          <div class="luxury-carousel__content">
+            <h3 class="luxury-carousel__card-title">Waxing</h3>
+            <p>Achieve smooth, hair-free skin with our <b>precise waxing services</b>. Our professional wax technicians ensure a comfortable and hygienic experience, removing unwanted hair efficiently.</p>
+            <a href="#" class="luxury-carousel__btn">Know More →</a>
+          </div>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="luxury-carousel__card">
+        <div class="luxury-carousel__img-wrap">
+          <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80" alt="Threading" />
+        </div>
+        <div class="luxury-carousel__overlay">
+          <div class="luxury-carousel__content">
+            <h3 class="luxury-carousel__card-title">Threading</h3>
+            <p>Get perfectly shaped brows and smooth facial skin with our <b>threading services</b>. Our beauty lounge provides expert threading for precise and gentle hair removal.</p>
+            <a href="#" class="luxury-carousel__btn">Know More →</a>
+          </div>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="luxury-carousel__card">
+        <div class="luxury-carousel__img-wrap">
+          <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Nail Care" />
+        </div>
+        <div class="luxury-carousel__overlay">
+          <div class="luxury-carousel__content">
+            <h3 class="luxury-carousel__card-title">Nail Care</h3>
+            <p>Luxury manicure & pedicure with gel polish. Pamper your hands and feet with our <b>nail care</b> services.</p>
+            <a href="#" class="luxury-carousel__btn">Know More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="module">
+// Centered horizontal carousel animation
+const track = document.querySelector('.luxury-carousel__track');
+const cards = Array.from(document.querySelectorAll('.luxury-carousel__card'));
+let current = 0;
+const cardWidth = 340 + 40; // width + gap (gap=2.5rem ~40px)
+function updateCarousel() {
+  cards.forEach((card, idx) => {
+    card.classList.remove('is-center', 'is-side');
+    if (idx === current) card.classList.add('is-center');
+    else card.classList.add('is-side');
+  });
+  // Center the active card
+  const viewport = document.querySelector('.luxury-carousel__viewport');
+  const visibleCards = 3;
+  const offset = (current - Math.floor(visibleCards / 2)) * cardWidth;
+  track.style.transform = `translateX(${-offset}px)`;
+}
+function nextSlide() {
+  current = (current + 1) % cards.length;
+  updateCarousel();
+}
+updateCarousel();
+setInterval(nextSlide, 2600);
+</script>

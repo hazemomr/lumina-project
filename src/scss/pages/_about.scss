@@ -1,0 +1,270 @@
+// src/scss/pages/_about.scss
+@use '../abstracts/variables' as v;
+@use 'sass:color';
+
+// ==========================================
+// About Page Styles
+// ==========================================
+
+.about {
+    // =========================
+    // Hero Section
+    // =========================
+    &__hero {
+        padding-block: calc(v.$spacing-unit * 10);
+        background: linear-gradient(135deg, 
+            rgba(v.$color-primary, 0.08) 0%, 
+            rgba(v.$color-light, 0.95) 50%,
+            rgba(v.$color-primary, 0.08) 100%
+        );
+        text-align: center;
+
+        &-title {
+            font-family: v.$font-heading;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: v.$color-dark;
+            margin-block-end: calc(v.$spacing-unit * 1.5);
+            font-weight: 800;
+            
+            span {
+                color: v.$color-primary;
+            }
+        }
+
+        &-subtitle {
+            color: v.$color-grey;
+            font-size: v.$font-size-lg;
+            max-width: 65ch;
+            margin-inline: auto;
+            line-height: 1.7;
+        }
+    }
+
+    // =========================
+    // Story Section
+    // =========================
+    &__story {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: calc(v.$spacing-unit * 6);
+        align-items: center;
+        padding: v.$spacing-4xl 0;
+
+        @media (min-width: 1024px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    &__story-content {
+        h2 {
+            font-family: v.$font-heading;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: v.$color-dark;
+            margin-block-end: v.$spacing-unit;
+        }
+
+        p {
+            color: v.$color-grey;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+    }
+
+    &__story-image {
+        position: relative;
+        
+        img {
+            width: 100%;
+            border-radius: v.$border-radius-xl;
+            box-shadow: v.$shadow-lg;
+            display: block;
+        }
+    }
+
+    // =========================
+    // Values Section
+    // =========================
+    &__values-section {
+        background-color: v.$color-light;
+        padding: v.$spacing-4xl 0;
+    }
+
+    &__section-header {
+        text-align: center;
+        margin-bottom: v.$spacing-3xl;
+        
+        .section-tag {
+            display: inline-block;
+            color: v.$color-primary;
+            font-size: v.$font-size-sm;
+            font-weight: v.$font-weight-semibold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: v.$spacing-md;
+        }
+        
+        h2 {
+            font-family: v.$font-heading;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: v.$color-dark;
+            
+            span {
+                color: v.$color-primary;
+            }
+        }
+    }
+
+    &__values-grid {
+        display: grid;
+        gap: calc(v.$spacing-unit * 3);
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    &__value-card {
+        padding: calc(v.$spacing-unit * 4);
+        background-color: v.$color-white;
+        border-radius: v.$border-radius-lg;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        text-align: center;
+        transition: all 0.3s v.$ease-premium;
+
+        &:hover {
+            transform: translateY(-8px);
+            box-shadow: v.$shadow-lg;
+            border-color: v.$color-primary;
+        }
+
+        &-icon {
+            font-size: 2.5rem;
+            margin-block-end: v.$spacing-unit;
+            display: block;
+        }
+
+        &-title {
+            font-family: v.$font-heading;
+            font-size: v.$font-size-lg;
+            color: v.$color-dark;
+            margin-block-end: v.$spacing-unit;
+        }
+
+        &-text {
+            color: v.$color-grey;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+    }
+
+    // =========================
+    // Team Section
+    // =========================
+    &__team-section {
+        padding: v.$spacing-4xl 0;
+        background: v.$color-white;
+    }
+
+    &__team-grid {
+        display: grid;
+        gap: v.$spacing-xl;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        margin-top: v.$spacing-3xl;
+    }
+
+    &__team-card {
+        text-align: center;
+        padding: v.$spacing-xl;
+        background: v.$color-white;
+        border-radius: v.$border-radius-lg;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s v.$ease-premium;
+
+        &:hover {
+            transform: translateY(-8px);
+            box-shadow: v.$shadow-lg;
+            border-color: v.$color-primary;
+        }
+
+        &-img-wrapper {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto v.$spacing-lg;
+            
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+                border: 3px solid v.$color-primary;
+                display: block;
+            }
+        }
+
+        &-name {
+            font-family: v.$font-heading;
+            font-size: v.$font-size-lg;
+            color: v.$color-dark;
+            margin-bottom: v.$spacing-xs;
+        }
+
+        &-role {
+            color: v.$color-primary;
+            font-size: v.$font-size-sm;
+            font-weight: v.$font-weight-medium;
+            display: block;
+        }
+    }
+}
+
+// =========================
+// Dark Mode
+// =========================
+[data-theme="dark"] .about {
+    &__hero {
+        background: linear-gradient(135deg, 
+            rgba(v.$color-primary, 0.15) 0%, 
+            rgba(0, 0, 0, 0.8) 50%,
+            rgba(v.$color-primary, 0.1) 100%
+        );
+        
+        &-title { color: v.$color-white; }
+        &-subtitle { color: v.$color-grey; }
+    }
+
+    &__values-section {
+        background-color: rgba(v.$color-white, 0.03);
+    }
+
+    &__value-card {
+        background-color: rgba(v.$color-white, 0.05);
+        border-color: rgba(v.$color-white, 0.1);
+
+        &-title { color: v.$color-white; }
+        &-text { color: v.$color-grey; }
+    }
+
+    &__team-card {
+        background-color: rgba(v.$color-white, 0.05);
+        border-color: rgba(v.$color-white, 0.1);
+        
+        &-name { color: v.$color-white; }
+    }
+}
+
+// =========================
+// Responsive
+// =========================
+@media (max-width: 768px) {
+    .about {
+        &__hero {
+            padding-block: calc(v.$spacing-unit * 6);
+        }
+        
+        &__value-card {
+            padding: calc(v.$spacing-unit * 3);
+        }
+        
+        &__team-card-img-wrapper {
+            width: 120px;
+            height: 120px;
+        }
+    }
+}

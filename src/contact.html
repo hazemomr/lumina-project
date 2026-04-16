@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Lumina Premium Salon</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script type="module" src="./main.js"></script>
+</head>
+<body>
+
+<!-- ==========================================
+     NAVBAR
+     ========================================== -->
+<nav class="navbar" aria-label="Main Navigation">
+    <div class="navbar__container">
+        <a href="index.html" class="navbar__logo">Lumina</a>
+        <ul class="navbar__list">
+            <li class="navbar__item">
+                <a href="index.html" class="navbar__link">Home</a>
+            </li>
+            <li class="navbar__item">
+                <a href="about.html" class="navbar__link">About</a>
+            </li>
+            <li class="navbar__item">
+                <a href="services.html" class="navbar__link">Services</a>
+            </li>
+            <li class="navbar__item">
+                <a href="contact.html" class="navbar__link navbar__link--active">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ==========================================
+     CONTACT PAGE
+     ========================================== -->
+<div class="contact-page">
+
+    <header class="contact-page__header">
+        <div class="container">
+            <h1 class="contact-page__title">Get in <span>Touch</span></h1>
+            <p class="contact-page__subtitle">
+                We’d love to hear from you. Book an appointment or ask a question anytime.
+            </p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="contact-page__hub">
+
+            <!-- INFO SECTION -->
+            <div class="contact-page__info">
+
+                <div class="contact-page__info-card">
+                    <div class="contact-page__info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-page__info-text">
+                        <h4>Our Location</h4>
+                        <p>123 Beauty Avenue, New York, NY 10001</p>
+                    </div>
+                </div>
+
+                <div class="contact-page__info-card">
+                    <div class="contact-page__info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-page__info-text">
+                        <h4>Call Us</h4>
+                        <p>+1 (234) 567-8900</p>
+                    </div>
+                </div>
+
+                <div class="contact-page__info-card">
+                    <div class="contact-page__info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-page__info-text">
+                        <h4>Email Us</h4>
+                        <p>hello@lumina-salon.com</p>
+                    </div>
+                </div>
+
+                <div class="contact-page__info-card">
+                    <div class="contact-page__info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-page__info-text">
+                        <h4>Working Hours</h4>
+                        <p>Mon - Sat: 9:00 AM - 8:00 PM<br>Sunday: 10:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- FORM SECTION with accessibility -->
+            <div class="contact-page__form-wrapper">
+                
+                <form class="contact-page__form" id="contactForm" 
+                      aria-label="Contact form"
+                      aria-live="polite">
+
+                    <div class="form-group">
+                        <label for="name">Your Full Name</label>
+                        <input id="name" type="text" placeholder="Jane Doe" aria-required="true">
+                        <span class="error" id="nameError" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input id="email" type="email" placeholder="jane@example.com" aria-required="true">
+                        <span class="error" id="emailError" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number (Optional)</label>
+                        <input id="phone" type="tel" placeholder="+1 (234) 567-8900">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" placeholder="How can we help you today?" rows="5" aria-required="true"></textarea>
+                        <span class="error" id="messageError" aria-live="polite"></span>
+                    </div>
+
+                    <button class="btn-submit" type="submit" aria-label="Send message">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                        Send Message
+                    </button>
+
+                    <div class="form-success" id="successMsg" style="display:none;" role="status" aria-live="polite">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        Message sent successfully! We'll get back to you soon. ✨
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+        <!-- MAP SECTION -->
+        <div class="contact-page__map">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.142299394152!2d-73.98731968459391!3d40.75889499033714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6462109%3A0x551946445516721!2sTimes%20Square!5e0!3m2!1sen!2sus!4v169"
+                loading="lazy"
+                allowfullscreen
+                title="Location map of Lumina Salon">
+            </iframe>
+        </div>
+
+    </div>
+</div>
+
+<!-- ==========================================
+     FOOTER
+     ========================================== -->
+<footer class="footer">
+    <div class="footer__container">
+        <div class="footer__column">
+            <a href="index.html" class="navbar__logo">Lumina</a>
+            <p class="footer__brand-text">
+                Elevating your beauty experience with professional care and luxury treatments.
+            </p>
+            <div class="footer__social-links">
+                <a href="#" class="footer__social-links-item" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="footer__social-links-item" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="footer__social-links-item" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="footer__social-links-item" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer__column">
+            <h4 class="footer__title">Quick Links</h4>
+            <ul class="footer__links">
+                <li><a href="index.html" class="footer__link">Home</a></li>
+                <li><a href="about.html" class="footer__link">About Us</a></li>
+                <li><a href="services.html" class="footer__link">Our Services</a></li>
+                <li><a href="contact.html" class="footer__link">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer__column">
+            <h4 class="footer__title">Our Speciality</h4>
+            <ul class="footer__links">
+                <li><a href="#" class="footer__link">Hair Styling</a></li>
+                <li><a href="#" class="footer__link">Skin Care</a></li>
+                <li><a href="#" class="footer__link">Nail Art</a></li>
+                <li><a href="#" class="footer__link">Luxury Spa</a></li>
+            </ul>
+        </div>
+        <div class="footer__column">
+            <h4 class="footer__title">Stay Updated</h4>
+            <div class="footer__newsletter">
+                <p class="footer__newsletter-text">Subscribe to get the latest beauty tips and offers.</p>
+                <form class="footer__form">
+                    <input type="email" class="footer__input" placeholder="Your Email Address" required aria-label="Email address">
+                    <button type="submit" class="footer__btn" aria-label="Subscribe">Join</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer__bottom container">
+        <div class="footer__copyright">
+            <p>&copy; <span id="year"></span> Lumina Premium Salon. All rights reserved.</p>
+        </div>
+        <div class="footer__bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Form Handler -->
+<script>
+    const form = document.getElementById('contactForm');
+    const submitBtn = form?.querySelector('.btn-submit');
+    const successMsg = document.getElementById('successMsg');
+    
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+    const messageError = document.getElementById('messageError');
+    
+    function validateName() {
+        if (nameInput.value.trim().length < 2) {
+            nameError.textContent = 'Please enter your full name';
+            return false;
+        }
+        nameError.textContent = '';
+        return true;
+    }
+    
+    function validateEmail() {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput.value)) {
+            emailError.textContent = 'Please enter a valid email address';
+            return false;
+        }
+        emailError.textContent = '';
+        return true;
+    }
+    
+    function validateMessage() {
+        if (messageInput.value.trim().length < 10) {
+            messageError.textContent = 'Please enter a message (at least 10 characters)';
+            return false;
+        }
+        messageError.textContent = '';
+        return true;
+    }
+    
+    nameInput?.addEventListener('input', validateName);
+    emailInput?.addEventListener('input', validateEmail);
+    messageInput?.addEventListener('input', validateMessage);
+    
+    form?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const isNameValid = validateName();
+        const isEmailValid = validateEmail();
+        const isMessageValid = validateMessage();
+        
+        if (!isNameValid || !isEmailValid || !isMessageValid) {
+            return;
+        }
+        
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        
+        setTimeout(() => {
+            form.reset();
+            submitBtn.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.display = 'flex';
+                successMsg.style.display = 'none';
+                nameError.textContent = '';
+                emailError.textContent = '';
+                messageError.textContent = '';
+            }, 3000);
+        }, 1500);
+    });
+</script>
+
+</body>
+</html>

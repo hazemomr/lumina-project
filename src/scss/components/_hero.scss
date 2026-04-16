@@ -1,194 +1,123 @@
-// _hero.scss
 @use '../abstracts/variables' as v;
+// ==========================================
+// Hero Section
+// ==========================================
 
+
+// تعويض ارتفاع النافبار الثابت
+// زيادة المسافة بين النافبار والهيرو
 .hero {
-    // ✅ تحسين 1: Fallback لضمان العمل على جميع المتصفحات (Old & New)
-    min-height: calc(100vh - 80px); 
-    min-height: calc(100dvh - 80px); 
-    
-    padding-block: (v.$spacing-unit * 10); 
-    position: relative;
+    padding-top: clamp(110px, 14vw, 140px); // مسافة أكبر
+    padding-bottom: 4rem;
+    background: linear-gradient(135deg, #fff9f5 0%, #ffffff 100%);
     overflow: hidden;
-    background-color: v.$color-light;
-    display: flex;
-    align-items: center;
-
-    &__bg-shape {
-        position: absolute;
-        z-index: -1;
-        border-radius: 50%;
-        opacity: 0.3;
-        will-change: transform;
-        
-        // ✅ تحسين 6: Parallax Hook - انتقال خطي لسلاسة الحركة عند استخدام JS لاحقاً
-        transition: transform 0.2s linear; 
-        
-        filter: blur(60px); 
-        transform: translateZ(0); 
-        mix-blend-mode: multiply; 
-
-        &--primary {
-            width: 400px;
-            height: 400px;
-            background-color: v.$color-primary;
-            top: -10%;
-            right: -5%;
-        }
-
-        &--secondary {
-            width: 300px;
-            height: 300px;
-            background-color: v.$color-secondary;
-            bottom: 10%;
-            left: -5%;
-        }
-    }
+    font-family: v.$font-primary;
 
     &__container {
-        width: 100%;
         max-width: 1200px;
         margin-inline: auto;
-        padding-inline: v.$spacing-unit;
+        padding-inline: 1.5rem;
         display: grid;
-        grid-template-columns: 1fr;
-        gap: (v.$spacing-unit * 4);
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
         align-items: center;
-
-        @media (min-width: 1024px) {
-            grid-template-columns: repeat(2, 1fr);
-        }
     }
 
-    &__content {
-        text-align: left;
-        z-index: 1;
-        will-change: transform, opacity;
-        
-        // ✅ تحسين 3: استخدام animation-fill-mode: both لمنع الـ Flicker
-        animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-        animation-delay: 0.1s; 
-        opacity: 0; 
+    &__tagline {
+        display: inline-block;
+        font-size: 1rem;
+        font-weight: 600;
+        color: v.$color-primary;
+        background: rgba(191,161,107, 0.13);
+        padding: 0.32rem 1.2rem;
+        border-radius: 50px;
+        margin-bottom: 0.7rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
     }
 
     &__title {
-        font-family: v.$font-heading;
-        font-size: clamp(2.5rem, 8vw, 4rem); 
+        font-family: v.$font-primary;
+        font-size: clamp(2.7rem, 6vw, 4.2rem);
+        font-weight: 700;
         color: v.$color-dark;
-        line-height: 1.1;
-        margin-block-end: v.$spacing-unit * 1.5;
-        font-weight: 800;
-        letter-spacing: -2px;
-
+        line-height: 1.13;
+        margin-bottom: 0.7rem;
+        letter-spacing: 0.5px;
         span {
             color: v.$color-primary;
-            position: relative;
-            font-weight: 700;
-            
-            &::after {
-                content: '';
-                position: absolute;
-                bottom: 5px;
-                left: 0;
-                width: 100%;
-                height: 8px;
-                background-color: rgba(v.$color-primary, 0.1);
-                z-index: -1;
-                transform: skewX(-10deg);
-            }
         }
     }
 
     &__description {
-        font-family: v.$font-main;
-        font-size: v.$font-size-lg;
         color: v.$color-grey;
-        margin-block-end: v.$spacing-unit * 3;
-        max-width: 60ch; 
-        line-height: 1.6;
+        font-size: 1.18rem;
+        line-height: 1.7;
+        margin-bottom: 1.3rem;
+        max-width: 92%;
     }
 
     &__actions {
         display: flex;
-        gap: (v.$spacing-unit * 2);
+        gap: 1.1rem;
+        margin-bottom: 2.2rem;
         flex-wrap: wrap;
-
-        @media (max-width: 480px) {
-            flex-direction: column;
-            align-items: stretch;
-        }
     }
 
-    &__visual {
-        position: relative;
+    &__info {
         display: flex;
-        justify-content: center;
+        gap: 2.2rem;
+        flex-wrap: wrap;
+        padding-top: 0.7rem;
+        &-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        &-number {
+            font-size: 2.1rem;
+            font-weight: 700;
+            color: v.$color-primary;
+        }
+        &-label {
+            font-size: 1rem;
+            color: v.$color-grey;
+        }
+    }
+
+    &__image {
+        display: flex;
         align-items: center;
-    }
-
-    &__visual-wrapper {
-        position: relative;
-        z-index: 1;
-        width: 100%;
-        max-width: 550px;
-        
-        // ✅ تحسين 4: إضافة Aspect-Ratio لمنع الـ Layout Shift (CLS) قبل تحميل الصورة
-        aspect-ratio: 4 / 3; 
-        
-        animation: float 6s ease-in-out infinite;
-        animation-delay: 0.3s; 
-        will-change: transform;
-    }
-
-    &__visual-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: v.$border-radius * 3;
-        box-shadow: v.$shadow-lg;
-        transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-        
-        // ✅ تحسين 5: إضافة will-change لتحسين أداء الـ Hover على الأجهزة الضعيفة
-        will-change: transform;
-
-        &:hover {
-            transform: scale(1.02) rotate(-1deg);
+        justify-content: center;
+        img {
+            width: 100%;
+            max-width: 420px;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            box-shadow: 0 10px 40px rgba(191,161,107,0.13);
+            margin-inline: auto;
+            display: block;
+            object-fit: cover;
         }
     }
 }
 
-// Animations
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
+@media (max-width: 768px) {
+    .hero__container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-}
-
-// ✅ تحسين 2: ضبط الـ Glass Effect في الوضع الليلي لضمان عدم بهتان الألوان
-[data-theme="dark"] .hero {
-    background-color: v.$color-dark;
     
-    &__bg-shape {
-        mix-blend-mode: normal; // تغيير من multiply إلى normal لمنع تداخل الألوان الداكنة
-        opacity: 0.2;
+    .hero__description {
+        max-width: 100%;
     }
-
-    &__title { color: v.$color-white; }
-    &__description { color: v.$color-grey; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .hero__content, .hero__visual-wrapper {
-        animation: none !important;
-        transition: none !important;
+    
+    .hero__actions {
+        justify-content: center;
+    }
+    
+    .hero__info {
+        justify-content: center;
     }
 }

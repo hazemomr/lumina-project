@@ -1,0 +1,184 @@
+@use '../abstracts/variables' as v;
+
+.luxury-services-section {
+  background: #f7f7f7;
+  padding: 4.5rem 0 5.5rem 0;
+  width: 100%;
+}
+.luxury-services__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1100px;
+  margin: 0 auto 2.5rem auto;
+  padding: 0 1.5rem;
+}
+.luxury-services__title {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: v.$color-dark;
+  margin: 0;
+  font-family: v.$font-primary;
+}
+.luxury-services__all-btn {
+  background: v.$color-primary;
+  color: #fff;
+  border-radius: 2rem;
+  padding: 0.7rem 1.7rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 2px 8px 0 rgba(191,161,107,0.07);
+  transition: background 0.2s;
+  margin-left: 1.5rem;
+  margin-top: 0.2rem;
+  &:hover {
+    background: #fff;
+    color: v.$color-primary;
+    border: 1.5px solid v.$color-primary;
+  }
+}
+.luxury-services__cards {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.luxury-card {
+  position: relative;
+  width: 290px;
+  min-width: 0;
+  height: 410px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2.2rem;
+  box-shadow: 0 8px 32px rgba(191,161,107,0.10);
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.5s cubic-bezier(.4,0,.2,1), box-shadow 0.5s;
+  opacity: 0.7;
+  z-index: 1;
+  .luxury-card__img-wrap {
+    flex: 1 1 50%;
+    min-height: 50%;
+    max-height: 50%;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+    }
+  }
+  .luxury-card__overlay {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    width: 100%;
+    height: 50%;
+    background: rgba(245, 222, 210, 0.85); /* nude/blush */
+    backdrop-filter: blur(7px) saturate(1.2);
+    border-top-left-radius: 2.2rem;
+    border-top-right-radius: 2.2rem;
+    box-shadow: 0 -2px 18px 0 rgba(191,161,107,0.10);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    transition: height 1.1s cubic-bezier(.4,0,.2,1);
+    will-change: height;
+    .luxury-card__content {
+      width: 100%;
+      padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .luxury-card__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: v.$color-dark;
+      margin-bottom: 0.4rem;
+    }
+    .luxury-card__desc {
+      color: v.$color-grey;
+      font-size: 1.01rem;
+      line-height: 1.5;
+      margin-bottom: 1.1rem;
+    }
+    .luxury-card__btn {
+      display: inline-block;
+      background: v.$color-primary;
+      color: #fff;
+      border: none;
+      padding: 0.55rem 1.7rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s;
+      text-decoration: none;
+      box-shadow: 0 2px 8px 0 rgba(191,161,107,0.07);
+      letter-spacing: 0.5px;
+      &:hover {
+        background: #fff;
+        color: v.$color-primary;
+        border: 1.5px solid v.$color-primary;
+      }
+    }
+  }
+}
+.luxury-card--center {
+  width: 340px;
+  height: 470px;
+  z-index: 2;
+  opacity: 1;
+  box-shadow: 0 16px 48px rgba(191,161,107,0.18);
+  transform: scale(1.08);
+}
+.luxury-card--side {
+  filter: blur(0.5px);
+}
+.luxury-card--active {
+  opacity: 1;
+  filter: none;
+}
+
+// Animation
+@keyframes luxuryOverlaySlide {
+  0% { height: 50%; }
+  40% { height: 50%; }
+  60% { height: 75%; }
+  100% { height: 50%; }
+}
+.luxury-card__overlay {
+  animation: luxuryOverlaySlide 2.7s cubic-bezier(.4,0,.2,1) infinite;
+}
+
+// Responsive
+@media (max-width: 900px) {
+  .luxury-services__cards {
+    gap: 1.2rem;
+  }
+  .luxury-card, .luxury-card--center {
+    width: 90vw;
+    max-width: 340px;
+    min-width: 0;
+  }
+}
+@media (max-width: 700px) {
+  .luxury-services__cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 2.2rem;
+  }
+  .luxury-card, .luxury-card--center {
+    width: 100vw;
+    max-width: 370px;
+    min-width: 0;
+    height: 400px;
+  }
+}

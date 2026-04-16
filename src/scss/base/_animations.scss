@@ -1,0 +1,46 @@
+// ================================
+// REVEAL ANIMATIONS 
+// ================================
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+// Variants
+.reveal--fade-up {
+  transform: translateY(30px);
+}
+
+.reveal--fade-left {
+  transform: translateX(-30px);
+}
+
+.reveal--fade-right {
+  transform: translateX(30px);
+}
+
+.reveal--scale {
+  transform: scale(0.9);
+}
+
+.reveal.revealed.reveal--fade-left,
+.reveal.revealed.reveal--fade-right,
+.reveal.revealed.reveal--fade-up {
+  transform: translate(0, 0);
+}
+
+.reveal.revealed.reveal--scale {
+  transform: scale(1);
+}
+
+.reveal img {
+  opacity: 1 !important;
+}

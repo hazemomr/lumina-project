@@ -1,252 +1,172 @@
 @use '../abstracts/variables' as v;
+// Slider specific styles
+.services-slider-section {
+    .services__card {
+        background: #fff;
+        padding: 2.1rem 1.5rem 1.7rem 1.5rem;
+        border-radius: 28px;
+        transition: all 0.3s cubic-bezier(.4,0,.2,1);
+        text-align: center;
+        border: 1.5px solid #f7f7f7;
+        box-shadow: 0 2px 16px 0 rgba(191,161,107,0.07);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        justify-content: flex-start;
+        &:hover {
+            transform: translateY(-7px) scale(1.025);
+            box-shadow: 0 10px 32px rgba(191,161,107,0.13);
+            border-color: v.$color-primary;
+        }
+    }
+    .services__card-img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 18px;
+        margin-bottom: 1.1rem;
+        box-shadow: 0 2px 8px 0 rgba(191,161,107,0.07);
+    }
+    .services__card-title {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: v.$color-dark;
+        margin-bottom: 0.4rem;
+        letter-spacing: 0.5px;
+    }
+    .services__card-text {
+        color: v.$color-grey;
+        font-size: 1.01rem;
+        line-height: 1.6;
+        margin-bottom: 1.1rem;
+    }
+    .services__card-btn {
+        display: inline-block;
+        background: v.$color-primary;
+        color: #fff;
+        border: none;
+        padding: 0.55rem 1.7rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s;
+        text-decoration: none;
+        box-shadow: 0 2px 8px 0 rgba(191,161,107,0.07);
+        letter-spacing: 0.5px;
+        &:hover {
+            background: #fff;
+            color: v.$color-primary;
+            border: 1.5px solid v.$color-primary;
+        }
+    }
+}
 
-// =========================
-// Services Section
-// =========================
+
 
 .services {
-    padding-block: (v.$spacing-unit * 10);
-    background-color: v.$color-white;
-    transition: background-color 0.3s ease;
+    padding-block: 5.5rem 5rem;
+    background: linear-gradient(135deg, #fff9f5 0%, #ffffff 100%);
+    font-family: v.$font-primary;
 
-    // =========================
-    // Header
-    // =========================
     &__header {
         text-align: center;
-        margin-inline: auto;
-        max-width: 60ch;
-        margin-block-end: (v.$spacing-unit * 6);
+        margin-bottom: 3.2rem;
+    }
+
+    &__subtitle {
+        display: inline-block;
+        font-size: 1rem;
+        color: v.$color-primary;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 0.7rem;
     }
 
     &__title {
-        font-family: v.$font-heading;
-        font-size: clamp(2rem, 5vw, 3rem);
+        font-family: v.$font-primary;
+        font-size: clamp(2.2rem, 5vw, 2.9rem);
         color: v.$color-dark;
-        margin-block-end: v.$spacing-unit;
-        font-weight: 800;
-        line-height: 1.2;
-
+        margin-bottom: 0.6rem;
+        font-weight: 700;
         span {
             color: v.$color-primary;
         }
     }
 
-    &__subtitle {
-        font-family: v.$font-main;
+    &__desc {
         color: v.$color-grey;
-        font-size: v.$font-size-lg;
-        line-height: 1.6;
+        font-size: 1.13rem;
+        margin-bottom: 0.5rem;
     }
 
-    // =========================
-    // Grid
-    // =========================
     &__grid {
         display: grid;
-        gap: (v.$spacing-unit * 3);
-        grid-template-columns: 1fr;
-
-        @media (min-width: 768px) {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        @media (min-width: 1024px) {
-            grid-template-columns: repeat(3, 1fr);
-        }
+        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        gap: 2.2rem;
     }
 
-    // =========================
-    // Card
-    // =========================
     &__card {
-        background-color: v.$color-light;
-        padding: (v.$spacing-unit * 3);
-        border-radius: v.$border-radius * 2;
-        border: 1px solid rgba(0, 0, 0, 0.05);
+        background: #fff;
+        padding: 2.1rem 1.5rem 1.7rem 1.5rem;
+        border-radius: 28px;
+        transition: all 0.3s cubic-bezier(.4,0,.2,1);
+        text-align: center;
+        border: 1.5px solid #f7f7f7;
+        box-shadow: 0 2px 16px 0 rgba(191,161,107,0.07);
         position: relative;
-        overflow: hidden;
-        cursor: pointer;
-
-        // performance optimized transitions
-        transition: transform v.$ease-premium 0.4s,
-                    box-shadow 0.4s ease,
-                    background-color 0.3s ease;
-
-        will-change: auto;
-
-        // hover state
         &:hover {
-            will-change: transform, box-shadow;
-            transform: translateY(-10px);
-            background-color: v.$color-white;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            transform: translateY(-7px) scale(1.025);
+            box-shadow: 0 10px 32px rgba(191,161,107,0.13);
             border-color: v.$color-primary;
         }
-
-        // active press feedback
-        &:active {
-            transform: translateY(-6px);
-        }
-
-        // =========================
-        // Featured Card
-        // =========================
         &--featured {
-            background-color: v.$color-primary;
+            background: linear-gradient(135deg, #f5e1a0, #ffffff);
             border-color: v.$color-primary;
-            color: v.$color-white;
-
-            .services__card-icon {
-                background-color: rgba(v.$color-white, 0.2);
-                color: v.$color-white;
-            }
-
-            .services__card-title {
-                color: v.$color-white;
-            }
-
-            .services__card-text {
-                color: rgba(255, 255, 255, 0.9);
-            }
-
-            &:hover {
-                background-color: color-mix(in srgb, v.$color-primary 90%, black);
-            }
         }
-
-        // =========================
-        // Icon
-        // =========================
         &-icon {
-            width: 60px;
-            height: 60px;
-            background-color: rgba(v.$color-primary, 0.1);
-            color: v.$color-primary;
-            border-radius: v.$border-radius;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-block-end: (v.$spacing-unit * 2);
-            transition: transform 0.3s v.$ease-premium;
-
-            &:hover {
-                transform: scale(1.1) rotate(3deg);
-            }
+            font-size: 2.6rem;
+            margin-bottom: 0.7rem;
         }
-
-        // =========================
-        // Text
-        // =========================
         &-title {
-            font-family: v.$font-heading;
-            font-size: v.$font-size-xl;
+            font-size: 1.35rem;
+            font-weight: 700;
             color: v.$color-dark;
-            margin-block-end: v.$spacing-unit;
-            font-weight: 700;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.5px;
         }
-
         &-text {
-            font-family: v.$font-main;
             color: v.$color-grey;
-            font-size: v.$font-size-base;
+            font-size: 1.01rem;
             line-height: 1.6;
-            margin-block-end: (v.$spacing-unit * 3);
+            margin-bottom: 0.5rem;
         }
-
-        // =========================
-        // Link
-        // =========================
-        &-link {
-            font-weight: 600;
-            color: v.$color-primary;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            padding: 0.3rem 0;
-
-            transition: color 0.3s ease, transform 0.2s ease;
-
-            &:focus-visible {
-                outline: 2px solid v.$color-primary;
-                outline-offset: 3px;
-                border-radius: 2px;
-            }
-
-            // active feedback
-            &:active {
-                transform: scale(0.97);
-            }
-
-            // arrow element
-            &-arrow {
-                margin-inline-start: 5px;
-                display: inline-block;
-                transition: transform 0.3s v.$ease-premium;
-            }
-
-            // hover arrow animation (FIXED selector)
-            &:hover &-arrow {
-                transform: translateX(4px);
-            }
-
-            &:hover {
-                color: color-mix(in srgb, v.$color-primary 80%, black);
-            }
-        }
-    }
-}
-
-// =========================
-// Dark Mode
-// =========================
-
-[data-theme="dark"] .services {
-    background-color: v.$color-dark;
-
-    &__title {
-        color: v.$color-white;
-    }
-
-    &__subtitle {
-        color: v.$color-grey;
-    }
-
-    &__card {
-        background-color: rgba(255, 255, 255, 0.05);
-        border-color: rgba(255, 255, 255, 0.1);
-        color: v.$color-white;
-
-        &-title {
-            color: v.$color-white;
-        }
-
-        &-text {
-            color: rgba(255, 255, 255, 0.75);
-        }
-
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        &-link {
+        &-price {
+            font-size: 1.18rem;
             font-weight: 700;
+            color: v.$color-primary;
+            margin: 0.5rem 0 0.7rem 0;
         }
-    }
-}
-
-// =========================
-// Accessibility
-// =========================
-
-@media (prefers-reduced-motion: reduce) {
-    .services__card,
-    .services__card-icon,
-    .services__card-link-arrow {
-        transition: none !important;
-        transform: none !important;
-        animation: none !important;
+        &-btn {
+            display: inline-block;
+            background: v.$color-primary;
+            color: #fff;
+            border: none;
+            padding: 0.55rem 1.7rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 2px 8px 0 rgba(191,161,107,0.07);
+            letter-spacing: 0.5px;
+            &:hover {
+                background: #fff;
+                color: v.$color-primary;
+                border: 1.5px solid v.$color-primary;
+            }
+        }
     }
 }
