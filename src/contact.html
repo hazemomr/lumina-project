@@ -8,32 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="/src/main.js"></script>
 </head>
 <body>
 
 <!-- ==========================================
-     NAVBAR
-     ========================================== -->
-<nav class="navbar" aria-label="Main Navigation">
-    <div class="navbar__container">
-        <a href="index.html" class="navbar__logo">Lumina</a>
-        <ul class="navbar__list">
-            <li class="navbar__item">
-                <a href="index.html" class="navbar__link">Home</a>
-            </li>
-            <li class="navbar__item">
-                <a href="about.html" class="navbar__link">About</a>
-            </li>
-            <li class="navbar__item">
-                <a href="services.html" class="navbar__link">Services</a>
-            </li>
-            <li class="navbar__item">
-                <a href="contact.html" class="navbar__link navbar__link--active">Contact</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+         NAVBAR (Injected Component)
+         ========================================== -->
+    <div id="navbar"></div>
+    
 
 <!-- ==========================================
      CONTACT PAGE
@@ -158,137 +141,6 @@
 <!-- ==========================================
      FOOTER
      ========================================== -->
-<footer class="footer">
-    <div class="footer__container">
-        <div class="footer__column">
-            <a href="index.html" class="navbar__logo">Lumina</a>
-            <p class="footer__brand-text">
-                Elevating your beauty experience with professional care and luxury treatments.
-            </p>
-            <div class="footer__social-links">
-                <a href="#" class="footer__social-links-item" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="footer__social-links-item" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="footer__social-links-item" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="footer__social-links-item" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-        </div>
-        <div class="footer__column">
-            <h4 class="footer__title">Quick Links</h4>
-            <ul class="footer__links">
-                <li><a href="index.html" class="footer__link">Home</a></li>
-                <li><a href="about.html" class="footer__link">About Us</a></li>
-                <li><a href="services.html" class="footer__link">Our Services</a></li>
-                <li><a href="contact.html" class="footer__link">Contact</a></li>
-            </ul>
-        </div>
-        <div class="footer__column">
-            <h4 class="footer__title">Our Speciality</h4>
-            <ul class="footer__links">
-                <li><a href="#" class="footer__link">Hair Styling</a></li>
-                <li><a href="#" class="footer__link">Skin Care</a></li>
-                <li><a href="#" class="footer__link">Nail Art</a></li>
-                <li><a href="#" class="footer__link">Luxury Spa</a></li>
-            </ul>
-        </div>
-        <div class="footer__column">
-            <h4 class="footer__title">Stay Updated</h4>
-            <div class="footer__newsletter">
-                <p class="footer__newsletter-text">Subscribe to get the latest beauty tips and offers.</p>
-                <form class="footer__form">
-                    <input type="email" class="footer__input" placeholder="Your Email Address" required aria-label="Email address">
-                    <button type="submit" class="footer__btn" aria-label="Subscribe">Join</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="footer__bottom container">
-        <div class="footer__copyright">
-            <p>&copy; <span id="year"></span> Lumina Premium Salon. All rights reserved.</p>
-        </div>
-        <div class="footer__bottom-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-        </div>
-    </div>
-</footer>
 
-<!-- Form Handler -->
-<script>
-    const form = document.getElementById('contactForm');
-    const submitBtn = form?.querySelector('.btn-submit');
-    const successMsg = document.getElementById('successMsg');
-    
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const messageInput = document.getElementById('message');
-    const nameError = document.getElementById('nameError');
-    const emailError = document.getElementById('emailError');
-    const messageError = document.getElementById('messageError');
-    
-    function validateName() {
-        if (nameInput.value.trim().length < 2) {
-            nameError.textContent = 'Please enter your full name';
-            return false;
-        }
-        nameError.textContent = '';
-        return true;
-    }
-    
-    function validateEmail() {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(emailInput.value)) {
-            emailError.textContent = 'Please enter a valid email address';
-            return false;
-        }
-        emailError.textContent = '';
-        return true;
-    }
-    
-    function validateMessage() {
-        if (messageInput.value.trim().length < 10) {
-            messageError.textContent = 'Please enter a message (at least 10 characters)';
-            return false;
-        }
-        messageError.textContent = '';
-        return true;
-    }
-    
-    nameInput?.addEventListener('input', validateName);
-    emailInput?.addEventListener('input', validateEmail);
-    messageInput?.addEventListener('input', validateMessage);
-    
-    form?.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const isNameValid = validateName();
-        const isEmailValid = validateEmail();
-        const isMessageValid = validateMessage();
-        
-        if (!isNameValid || !isEmailValid || !isMessageValid) {
-            return;
-        }
-        
-        const originalText = submitBtn.innerHTML;
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        
-        setTimeout(() => {
-            form.reset();
-            submitBtn.style.display = 'none';
-            successMsg.style.display = 'block';
-            
-            setTimeout(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
-                submitBtn.style.display = 'flex';
-                successMsg.style.display = 'none';
-                nameError.textContent = '';
-                emailError.textContent = '';
-                messageError.textContent = '';
-            }, 3000);
-        }, 1500);
-    });
-</script>
+    <div id="footer"></div>
 
-</body>
-</html>

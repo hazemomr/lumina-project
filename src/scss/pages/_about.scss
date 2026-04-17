@@ -6,11 +6,14 @@
 // About Page Styles
 // ==========================================
 
+// إضافة هامش علوي بعد النافبار
 .about {
+    margin-top: 7rem;
     // =========================
     // Hero Section
     // =========================
     &__hero {
+        margin-top: 7rem;
         padding-block: calc(v.$spacing-unit * 10);
         background: linear-gradient(135deg, 
             rgba(v.$color-primary, 0.08) 0%, 

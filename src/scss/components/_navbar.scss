@@ -1,106 +1,8 @@
 @use '../abstracts/variables' as v;
-// =============== MOBILE NAVBAR ===============
-.navbar__toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 38px;
-    height: 38px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1201;
-    margin-left: 1rem;
-}
-.navbar__toggle-bar {
-    width: 26px;
-    height: 3px;
-    background: v.$color-primary;
-    margin: 3px 0;
-    border-radius: 2px;
-    transition: all 0.3s;
-}
 
-.navbar__drawer {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 82vw;
-    max-width: 340px;
-    height: 100vh;
-    background: #fff;
-    box-shadow: -2px 0 24px 0 rgba(191,161,107,0.13);
-    z-index: 1202;
-    transform: translateX(100%);
-    transition: transform 0.35s cubic-bezier(.4,0,.2,1);
-    display: flex;
-    flex-direction: column;
-    padding: 2.2rem 1.5rem 1.5rem 2rem;
-    aria-hidden: true;
-}
-.navbar__drawer[aria-hidden="false"] {
-    transform: translateX(0);
-}
-.navbar__drawer-close {
-    background: none;
-    border: none;
-    font-size: 2.2rem;
-    color: v.$color-primary;
-    align-self: flex-end;
-    cursor: pointer;
-    margin-bottom: 1.5rem;
-}
-.navbar__drawer-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-.navbar__drawer-link {
-    font-family: v.$font-primary;
-    font-size: 1.18rem;
-    color: v.$color-dark;
-    text-decoration: none;
-    font-weight: 500;
-    letter-spacing: 1px;
-    transition: color 0.22s;
-}
-.navbar__drawer-link:hover {
-    color: v.$color-primary;
-}
-.navbar__backdrop {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(34, 34, 34, 0.32);
-    z-index: 1200;
-    transition: opacity 0.3s;
-    opacity: 0;
-}
-.navbar__backdrop.active {
-    display: block;
-    opacity: 1;
-}
-
-// Responsive
-@media (max-width: 900px) {
-    .navbar__list {
-        display: none;
-    }
-    .navbar__toggle {
-        display: flex;
-    }
-}
-
-
-
-// شفاف فوق الهيرو، أبيض مع ظل عند التمرير
+// ==========================================
+// NAVBAR BASE
+// ==========================================
 .navbar {
     position: fixed;
     top: 0;
@@ -110,11 +12,31 @@
     display: flex;
     align-items: center;
     padding-block: 28px 18px;
-    background: rgba(255, 255, 255, 0.35); // شفاف افتراضي
-    box-shadow: none;
+    background: rgba(255,255,255,0.45);
     border-bottom: 1.5px solid transparent;
     font-family: v.$font-primary;
-    transition: all 0.35s cubic-bezier(.4,0,.2,1);
+    backdrop-filter: none;
+
+    transition:
+        background 0.35s cubic-bezier(0.4,0,0.2,1),
+        padding 0.35s cubic-bezier(0.4,0,0.2,1),
+        box-shadow 0.35s cubic-bezier(0.4,0,0.2,1),
+        border-color 0.35s cubic-bezier(0.4,0,0.2,1);
+
+    // ============ SCROLLED STATE ============
+    &.navbar--scrolled {
+        background: rgba(255,255,255,0.85);
+        box-shadow: 0 4px 24px rgba(191,161,107,0.12);
+        border-bottom: 1.5px solid rgba(191,161,107,0.13);
+        padding-block: 10px 8px;
+    }
+
+    // Backdrop blur only if supported
+    @supports (backdrop-filter: blur(10px)) {
+        &.navbar--scrolled {
+            backdrop-filter: blur(16px) saturate(1.5);
+        }
+    }
 
     &__container {
         max-width: 1200px;
@@ -126,25 +48,27 @@
         padding-inline: 2.5rem;
     }
 
-    // ================= LOGO =================
+    // ======================================
+    // LOGO
+    // ======================================
     &__logo {
-        font-family: v.$font-primary;
         font-size: 2.2rem;
         font-weight: 700;
         color: v.$color-primary;
         text-decoration: none;
-        letter-spacing: 0.5px;
         text-transform: uppercase;
         letter-spacing: 2px;
-        transition: color 0.3s, transform 0.3s;
-        padding-right: 1.5rem;
+        transition: color .3s, transform .3s;
+
         &:hover {
             color: v.$color-secondary;
             transform: scale(1.06);
         }
     }
 
-    // ================= MENU =================
+    // ======================================
+    // DESKTOP MENU
+    // ======================================
     &__list {
         display: flex;
         list-style: none;
@@ -156,72 +80,180 @@
     &__link {
         position: relative;
         text-decoration: none;
-        font-family: v.$font-primary;
         font-size: 1.08rem;
         font-weight: 500;
         color: v.$color-dark;
-        padding: 0.4rem 0;
         letter-spacing: 1px;
-        transition: color 0.22s;
+        padding: .4rem 0;
+        transition: color .22s;
+
         &::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -4px;
-            width: 100%;
-            height: 2px;
-            background: v.$color-primary;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s;
+            content:'';
+            position:absolute;
+            left:0;
+            bottom:-4px;
+            width:100%;
+            height:2px;
+            background:v.$color-primary;
+            transform:scaleX(0);
+            transform-origin:right;
+            transition:transform .3s;
         }
+
         &:hover {
-            color: v.$color-primary;
-        }
-        &:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-        &--active {
-            color: v.$color-primary;
+            color:v.$color-primary;
             &::after {
-                transform: scaleX(1);
+                transform:scaleX(1);
+                transform-origin:left;
             }
         }
+
+        &--active {
+            color:v.$color-primary;
+            &::after { transform:scaleX(1); }
+        }
     }
 
-    // ================= SCROLLED STATE =================
-    &--scrolled {
-        padding-block: 10px 8px;
-        background: rgba(255,255,255,0.98); // أبيض عند التمرير
-        box-shadow: 0 8px 32px 0 rgba(191,161,107,0.13);
-        border-bottom: 1.5px solid #ececec;
+    // Focus accessibility
+    &__link:focus-visible,
+    &__drawer-link:focus-visible {
+        outline:2px solid v.$color-primary;
+        outline-offset:4px;
+    }
+
+    // ======================================
+    // HAMBURGER BUTTON
+    // ======================================
+    &__toggle {
+        display:none;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        width:38px;
+        height:38px;
+        border:none;
+        background:none;
+        cursor:pointer;
+        z-index:1201;
+    }
+
+    &__toggle-bar {
+        width:26px;
+        height:3px;
+        background:v.$color-primary;
+        margin:3px 0;
+        border-radius:2px;
+        transition:all .3s;
+    }
+
+    // Hamburger animation
+    &__toggle.active &__toggle-bar:nth-child(1){
+        transform:translateY(6px) rotate(45deg);
+    }
+    &__toggle.active &__toggle-bar:nth-child(2){
+        opacity:0;
+    }
+    &__toggle.active &__toggle-bar:nth-child(3){
+        transform:translateY(-6px) rotate(-45deg);
+    }
+
+    // ======================================
+    // MOBILE DRAWER
+    // ======================================
+    &__drawer {
+        position:fixed;
+        top:0;
+        right:0;
+        width:82vw;
+        max-width:340px;
+        height:100vh;
+        background:#fff;
+        box-shadow:-2px 0 24px rgba(191,161,107,0.13);
+        transform:translateX(100%);
+        transition:transform .35s cubic-bezier(0.4,0,0.2,1);
+        display:flex;
+        flex-direction:column;
+        padding:2.2rem 1.5rem 1.5rem 2rem;
+        z-index:1202;
+
+        &[aria-hidden="false"] { transform:translateX(0); }
+    }
+
+    &__drawer-close {
+        border:none;
+        background:none;
+        font-size:2.2rem;
+        color:v.$color-primary;
+        align-self:flex-end;
+        cursor:pointer;
+    }
+
+    &__drawer-list {
+        list-style:none;
+        padding:0;
+        display:flex;
+        flex-direction:column;
+        gap:2rem;
+    }
+
+    &__drawer-link {
+        font-size:1.18rem;
+        text-decoration:none;
+        color:v.$color-dark;
+        font-weight:500;
+        letter-spacing:1px;
+        transition:color .22s;
+
+        &:hover { color:v.$color-primary; }
+    }
+
+    // ======================================
+    // BACKDROP
+    // ======================================
+    &__backdrop {
+        display:none;
+        position:fixed;
+        inset:0;
+        background:rgba(34,34,34,.32);
+        opacity:0;
+        transition:opacity .3s;
+        z-index:1200;
+
+        &.active {
+            display:block;
+            opacity:1;
+        }
     }
 }
 
-// ================= DARK MODE =================
+// Prevent scroll when menu open
+.body--no-scroll { overflow:hidden; }
+
+// Responsive
+@media (max-width:768px){
+    .navbar__list{ display:none; }
+    .navbar__toggle{ display:flex; }
+    .navbar__container{ padding-inline:1.5rem; }
+    .navbar__logo{ font-size:1.6rem; }
+}
+
+// Dark mode
 [data-theme="dark"] .navbar {
-    background: rgba(15, 15, 20, 0.6);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background:rgba(15,15,20,.6);
+    border-bottom:1px solid rgba(255,255,255,.08);
 
-    &__link {
-        color: #e5e7eb;
-
-        &:hover {
-            color: v.$color-primary;
-        }
-    }
-
-    &__logo {
-        color: #fff;
-    }
+    &.navbar--scrolled { background:rgba(15,15,20,.95); }
+    &__logo { color:#fff; }
+    &__link { color:#e5e7eb; }
+    &__drawer { background:#1a1a2e; }
+    &__drawer-link { color:#e5e7eb; }
+    &__toggle-bar { background:#fff; }
 }
 
-// ================= MOBILE =================
-@media (max-width: 768px) {
-    .navbar {
-        &__list {
-            display: none;
-        }
-    }
+// Reduce motion
+@media (prefers-reduced-motion: reduce){
+  .navbar, .navbar * {
+    transition:none !important;
+    animation:none !important;
+  }
 }

@@ -9,24 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Vite Entry Point -->
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="/src/main.js"></script>
 </head>
 
 <body>
 
-    <!-- ========================= NAVBAR ========================= -->
-    <nav class="navbar">
-        <div class="navbar__container">
-            <a href="index.html" class="navbar__logo">Lumina</a>
-
-            <ul class="navbar__list">
-                <li class="navbar__item"><a href="index.html" class="navbar__link">Home</a></li>
-                <li class="navbar__item"><a href="about.html" class="navbar__link">About</a></li>
-                <li class="navbar__item"><a href="services.html" class="navbar__link navbar__link--active">Services</a></li>
-                <li class="navbar__item"><a href="contact.html" class="navbar__link">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+<!-- ==========================================
+         NAVBAR (Injected Component)
+         ========================================== -->
+    <div id="navbar"></div>
+    
 
     <!-- ========================= MAIN ========================= -->
     <main class="services-page">
@@ -151,69 +143,10 @@
 
     </main>
 
-    <!-- ========================= FOOTER ========================= -->
-    <footer class="footer">
-
-        <div class="footer__container">
-
-            <!-- Brand -->
-            <div class="footer__column">
-                <a href="index.html" class="navbar__logo">Lumina</a>
-
-                <p class="footer__brand-text">
-                    Elevating beauty experiences with premium care and luxury treatments.
-                </p>
-
-                <div class="footer__social-links">
-                    <a href="#" class="footer__social-links-item"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="footer__social-links-item"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="footer__social-links-item"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="footer__social-links-item"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-
-            <!-- Links -->
-            <div class="footer__column">
-                <h4 class="footer__title">Quick Links</h4>
-                <ul class="footer__links">
-                    <li><a href="index.html" class="footer__link">Home</a></li>
-                    <li><a href="about.html" class="footer__link">About</a></li>
-                    <li><a href="services.html" class="footer__link">Services</a></li>
-                    <li><a href="contact.html" class="footer__link">Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- Specialties -->
-            <div class="footer__column">
-                <h4 class="footer__title">Our Specialties</h4>
-                <ul class="footer__links">
-                    <li><a href="#" class="footer__link">Hair Styling</a></li>
-                    <li><a href="#" class="footer__link">Skin Care</a></li>
-                    <li><a href="#" class="footer__link">Nail Art</a></li>
-                    <li><a href="#" class="footer__link">Luxury Spa</a></li>
-                </ul>
-            </div>
-
-            <!-- Newsletter -->
-            <div class="footer__column">
-                <h4 class="footer__title">Stay Updated</h4>
-
-                <form class="footer__form">
-                    <input type="email" class="footer__input" placeholder="Your Email Address" required>
-                    <button type="submit" class="footer__btn">Join</button>
-                </form>
-            </div>
-
-        </div>
-
-        <!-- Bottom -->
-        <div class="footer__bottom container">
-            <p>
-                &copy; <span id="year"></span> Lumina Premium Salon. All rights reserved.
-            </p>
-        </div>
-
-    </footer>
+        <!-- ==========================================
+         FOOTER SECTION
+        ========================================== -->
+    <div id="footer"></div>
 
 </body>
 </html>

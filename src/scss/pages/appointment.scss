@@ -86,7 +86,10 @@
 // MAIN STYLES
 // ==========================================
 
+
+// إضافة هامش علوي بعد النافبار
 .appointment-page {
+    margin-top: 7rem;
     animation: fadeInUp 0.8s v.$ease-premium;
 
     &__header {

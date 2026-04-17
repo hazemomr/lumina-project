@@ -1,42 +1,88 @@
-
 @use '../abstracts/variables' as v;
-// تأثير الكارت في المنتصف أكبر والجانبيين أصغر
-.luxury-carousel__card.is-center {
-  transform: scale(1.18);
-  z-index: 2;
-  box-shadow: 0 16px 48px rgba(191,161,107,0.18);
-  opacity: 1;
-}
-.luxury-carousel__card.is-side {
-  transform: scale(0.82);
-  z-index: 1;
-  opacity: 0.7;
+
+// ==========================================
+// LUXURY CAROUSEL 
+// ==========================================
+
+// ==========================================
+// Card States
+// ==========================================
+.luxury-carousel__card {
+  &.is-center {
+    transform: scale(v.$carousel-center-scale);
+    z-index: v.$carousel-z-center;
+    box-shadow: 0 16px 48px rgba(v.$carousel-gold, 0.18);
+    opacity: v.$carousel-center-opacity;
+    
+    @media (max-width: v.$carousel-mobile) {
+      transform: scale(1.05);
+    }
+  }
+
+  &.is-side {
+    transform: scale(v.$carousel-side-scale);
+    z-index: v.$carousel-z-side;
+    opacity: v.$carousel-side-opacity;
+    
+    @media (max-width: v.$carousel-mobile) {
+      transform: scale(0.95);
+      opacity: 0.5;
+    }
+  }
 }
 
+// ==========================================
+// Main Section
+// ==========================================
 .luxury-carousel-section {
-  background: #f7f7f7;
-  padding: 6rem 0 7rem 0; // زيادة المساحة العلوية والسفلية
-  width: 100vw;
+  background: v.$carousel-bg-light;
+  padding: clamp(3rem, 8vw, 6rem) 0 clamp(4rem, 10vw, 7rem) 0;
+  width: 100%;
   min-height: 700px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow-x: hidden;
+  position: relative;
 }
+
+// ==========================================
+// Header
+// ==========================================
 .luxury-carousel__header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
   max-width: 1100px;
   margin: 0 auto 2.5rem auto;
   padding: 0 1.5rem;
 }
+
 .luxury-carousel__title {
-  font-size: 2.1rem;
+  font-size: clamp(1.5rem, 5vw, 2.1rem);
   font-weight: 700;
   color: v.$color-dark;
   margin: 0;
   font-family: v.$font-primary;
+  position: relative;
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: v.$carousel-gold;
+    margin-top: 0.5rem;
+    transition: width v.$carousel-transition-fast;
+  }
+  
+  &:hover::after {
+    width: 100px;
+  }
 }
+
 .luxury-carousel__all-btn {
   background: v.$color-primary;
   color: #fff;
@@ -45,110 +91,249 @@
   font-weight: 600;
   font-size: 1rem;
   text-decoration: none;
-  box-shadow: 0 2px 8px 0 rgba(191,161,107,0.07);
-  transition: background 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(v.$carousel-gold, 0.07);
+  transition: all v.$carousel-transition-fast;
   margin-left: 1.5rem;
   margin-top: 0.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  &::after {
+    content: '→';
+    transition: transform v.$carousel-transition-fast;
+  }
+  
   &:hover {
     background: #fff;
     color: v.$color-primary;
     border: 1.5px solid v.$color-primary;
+    
+    &::after {
+      transform: translateX(5px);
+    }
   }
 }
+
+// ==========================================
+// Viewport & Track
+// ==========================================
 .luxury-carousel__viewport {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
+  padding: 0 2rem;
   overflow: hidden;
-  min-height: 540px;
-}
-.luxury-carousel__track {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 2rem;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.8s cubic-bezier(.4,0,.2,1);
-  will-change: transform;
+  box-sizing: border-box;
+  position: relative;
 }
 
+.luxury-carousel__track {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start; // يبدأ من اليسار
+  gap: v.$carousel-gap;
+  transition: transform v.$carousel-transition-slow;
+  will-change: transform;
+  cursor: grab;
+  
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+// ==========================================
+// Navigation Buttons
+// ==========================================
+.carousel__nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: v.$carousel-z-nav;
+  transition: all v.$carousel-transition-fast;
+  box-shadow: v.$shadow-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: v.$color-primary;
+  
+  &:hover {
+    background: v.$color-primary;
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: v.$shadow-lg;
+  }
+  
+  &:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+  
+  @media (max-width: v.$carousel-mobile) {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  
+  &.nav-prev {
+    left: 0.5rem;
+    
+    @media (min-width: v.$carousel-tablet) {
+      left: -0.5rem;
+    }
+  }
+  
+  &.nav-next {
+    right: 0.5rem;
+    
+    @media (min-width: v.$carousel-tablet) {
+      right: -0.5rem;
+    }
+  }
+}
+
+// ==========================================
+// Cards
+// ==========================================
 .luxury-carousel__card {
   position: relative;
-  flex: 0 0 33.3333%;
-  width: 33.3333%;
-  min-width: 0;
-  max-width: 400px;
-  height: 100%;
+  flex: 0 0 calc((100vw - 4rem) / 3);
+  max-width: 380px;
+  min-width: 260px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  border-radius: 2.2rem;
-  box-shadow: 0 8px 32px rgba(191,161,107,0.10);
+  border-radius: v.$carousel-card-radius;
+  box-shadow: 0 8px 32px rgba(v.$carousel-gold, 0.10);
   overflow: hidden;
   background: #fff;
   opacity: 0.97;
   z-index: 1;
-  transition: opacity 0.5s, transform 0.5s, box-shadow 0.5s;
-
+  transition: all v.$carousel-transition-medium;
+  transform-origin: center;
+  
+  // Responsive - Mobile
+  @media (max-width: v.$carousel-mobile) {
+    flex: 0 0 calc(100vw - 3rem);
+  }
+  
+  // Responsive - Tablet
+  @media (min-width: 769px) and (max-width: 1024px) {
+    flex: 0 0 calc((100vw - 4rem) / 2);
+  }
+  
+  // Hover effect on non-center cards
+  &:not(.is-center):hover {
+    transform: scale(0.87) !important;
+    opacity: 0.85;
+  }
+  
+  // Image wrapper
   .luxury-carousel__img-wrap {
-    flex: 0 0 28%;
-    min-height: 28%;
-    max-height: 28%;
+    flex: 0 0 v.$carousel-card-height;
+    min-height: v.$carousel-card-height;
+    max-height: v.$carousel-card-height;
     overflow: hidden;
+    position: relative;
+    
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center center;
       display: block;
-      transition: transform 0.5s;
+      transition: transform v.$carousel-transition-medium;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, transparent 70%, rgba(0,0,0,0.1));
+      pointer-events: none;
     }
   }
+  
+  // Content
   .luxury-carousel__content {
-    flex: 1 1 72%;
-    background: #f5ded2;
-    padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+    flex: 1 1 auto;
+    background: v.$carousel-card-bg;
+    padding: clamp(1.5rem, 4vw, 2.2rem) 1.5rem 1.5rem 1.5rem;
     text-align: left;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    border-bottom-left-radius: 2.2rem;
-    border-bottom-right-radius: 2.2rem;
-    .luxury-carousel__card-title {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: v.$color-dark;
-      margin-bottom: 0.7rem;
-    }
-    p {
-      color: v.$color-grey;
-      font-size: 1.08rem;
-      line-height: 1.6;
-      margin-bottom: 1.3rem;
-    }
-    .luxury-carousel__btn {
-      display: inline-block;
-      background: v.$color-primary;
-      color: #fff;
-      border: none;
-      padding: 0.65rem 1.9rem;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1.05rem;
-      transition: all 0.3s;
-      text-decoration: none;
-      box-shadow: 0 2px 8px 0 rgba(191,161,107,0.07);
-      letter-spacing: 0.5px;
-      &:hover {
-        background: #fff;
-        color: v.$color-primary;
-        border: 1.5px solid v.$color-primary;
+    border-bottom-left-radius: v.$carousel-card-radius;
+    border-bottom-right-radius: v.$carousel-card-radius;
+    
+    .luxury-carousel__img-wrap {
+      flex: 0 0 230px;
+      min-height: 230px;
+      max-height: 230px;
+      overflow: hidden;
+      position: relative;
+    
+      img {
+        width: 100%;
+        height: 100%;
+        min-height: 100%;
+        min-width: 100%;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+        transition: transform v.$carousel-transition-medium;
       }
+    
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, transparent 70%, rgba(0,0,0,0.1));
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+// ==========================================
+// Indicators (Dots)
+// ==========================================
+.carousel__indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 3rem;
+  padding: 0 1rem;
+  
+  .indicator {
+    width: 40px;
+    height: 3px;
+    background: rgba(v.$carousel-gold, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all v.$carousel-transition-fast;
+    
+    &:hover {
+      background: rgba(v.$carousel-gold, 0.6);
+    }
+    
+    &.active {
+      width: 60px;
+      background: v.$carousel-gold;
     }
   }
 }

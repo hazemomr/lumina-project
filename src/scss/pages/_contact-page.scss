@@ -89,10 +89,53 @@
 // MAIN STYLES
 // ==========================================
 
+// إضافة هامش علوي بعد النافبار
+// خلفية صالون ثابتة في الأعلى، تتغير عند التمرير
 .contact-page {
+    margin-top: 7rem;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+}
 
-    animation: fadeInUp 0.8s v.$ease-premium;
+.contact-page__fixed-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 60vh;
+    background: url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80') center center/cover no-repeat;
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity 0.6s;
+}
 
+.contact-page--scrolled .contact-page__fixed-bg {
+    opacity: 0;
+}
+
+.contact-page__scroll-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #f8f5f0 0%, #fff 100%);
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s;
+}
+
+.contact-page--scrolled .contact-page__scroll-bg {
+    opacity: 1;
+}
+
+// ==========================================
+// HEADER SECTION
+// ==========================================
+
+.contact-page {
     &__header {
         padding-block: calc(v.$spacing-unit * 8);
         text-align: center;
@@ -126,7 +169,7 @@
 
         &-title {
             font-family: v.$font-heading;
-            font-size: clamp(2.5rem, 6vw, 4.5rem); // ✅ تم التكبير
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             color: v.$color-dark;
             font-weight: 800;
             margin-bottom: v.$spacing-unit;
@@ -159,7 +202,7 @@
 
         &-subtitle {
             color: v.$color-grey;
-            font-size: clamp(1rem, 4vw, 1.3rem); // ✅ تم التكبير
+            font-size: clamp(1rem, 4vw, 1.3rem);
             max-width: 60ch;
             margin: auto;
             line-height: 1.6;
@@ -192,7 +235,6 @@
         display: flex;
         align-items: center;
         gap: calc(v.$spacing-unit * 2);
-        // ✅ نفس أنيميشن بطاقات الخدمات بالضبط
         transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         box-shadow: v.$shadow-sm;
         position: relative;
@@ -202,7 +244,7 @@
         overflow: hidden;
         cursor: pointer;
 
-        // ✅ Staggered animation
+        // Staggered animation
         &:nth-child(1) { animation-delay: 0.1s; }
         &:nth-child(2) { animation-delay: 0.2s; }
         &:nth-child(3) { animation-delay: 0.3s; }
@@ -224,7 +266,6 @@
             transition: left 0.6s v.$ease-premium;
         }
 
-        // ✅ نفس hover بتاع خدمات (translateY(-16px) scale(1.02))
         &:hover {
             transform: translateY(-16px) scale(1.02);
             border-color: v.$color-primary;
@@ -240,7 +281,7 @@
         }
 
         &-icon {
-            width: 65px; // ✅ تكبير الأيقونة
+            width: 65px;
             height: 65px;
             background: linear-gradient(135deg, rgba(v.$color-primary, 0.1), rgba(v.$color-secondary, 0.05));
             color: v.$color-primary;
@@ -260,7 +301,7 @@
         &-text {
             h4 {
                 font-family: v.$font-heading;
-                font-size: 1.3rem; // ✅ تكبير الخط
+                font-size: 1.3rem;
                 color: v.$color-dark;
                 margin-bottom: 8px;
                 transition: color 0.3s v.$ease-premium;
@@ -268,7 +309,7 @@
 
             p {
                 color: v.$color-grey;
-                font-size: 1rem; // ✅ تكبير الخط
+                font-size: 1rem;
                 line-height: 1.5;
                 transition: color 0.3s v.$ease-premium;
             }
@@ -291,7 +332,6 @@
         animation: fadeInRight 0.6s 0.3s v.$ease-premium forwards;
         position: relative;
         overflow: hidden;
-        // ✅ نفس transition بتاع الخدمات
         transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
         &:hover {
@@ -337,7 +377,7 @@
         label {
             font-weight: v.$font-weight-semibold;
             color: v.$color-dark;
-            font-size: 1rem; // ✅ تكبير الخط
+            font-size: 1rem;
             transition: color 0.3s v.$ease-premium;
         }
 
@@ -377,7 +417,7 @@
             border: none;
             cursor: pointer;
             font-weight: 600;
-            font-size: 1rem; // ✅ تكبير الخط
+            font-size: 1rem;
             transition: all 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
             display: flex;
             align-items: center;
@@ -568,7 +608,6 @@
         &__info-card {
             padding: calc(v.$spacing-unit * 2);
             
-            // تقليل الحركة على الموبايل شوية
             &:hover {
                 transform: translateY(-8px) scale(1.01);
             }
@@ -608,7 +647,10 @@
     }
 }
 
-// ✅ تقليل الحركة للمستخدمين الذين يفضلون ذلك
+// ==========================================
+// REDUCED MOTION
+// ==========================================
+
 @media (prefers-reduced-motion: reduce) {
     .contact-page {
         animation: none;

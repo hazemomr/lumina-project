@@ -237,3 +237,40 @@ $blur-2xl: blur(24px) !default;
   dark: $color-dark;
   light: $color-light;
 }
+
+// ==========================================
+// 12. Carousel Specific Variables (🆕)
+// ==========================================
+
+// Carousel Colors
+$carousel-gold: #bfa16b;
+$carousel-gold-rgb: 191, 161, 107;
+$carousel-card-bg: #f5ded2;
+$carousel-bg-light: #f7f7f7;
+
+// Carousel Transitions
+$carousel-transition-slow: 1.6s cubic-bezier(0.22, 1, 0.36, 1); // نعومة أكثر
+$carousel-transition-medium: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+$carousel-transition-fast: 0.3s ease;
+
+// Carousel Sizes
+$carousel-card-height: 220px;
+$carousel-card-radius: 2.2rem;
+$carousel-gap: 2rem;
+
+// Carousel Scales
+$carousel-center-scale: 1.18;
+$carousel-side-scale: 0.82;
+
+// Carousel Opacity
+$carousel-center-opacity: 1;
+$carousel-side-opacity: 0.7;
+
+// Carousel Breakpoints
+$carousel-mobile: 768px;
+$carousel-tablet: 1024px;
+
+// Carousel Z-Indices
+$carousel-z-side: 1;
+$carousel-z-center: 2;
+$carousel-z-nav: 10;

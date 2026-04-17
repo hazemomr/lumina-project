@@ -1,22 +1,47 @@
 <nav class="navbar" aria-label="Main Navigation">
     <div class="navbar__container">
-        <a href="index.html" class="navbar__logo">Lumina</a>
+        <!-- Logo -->
+        <a href="/index.html" class="navbar__logo">Lumina</a>
+        
+        <!-- Desktop Menu -->
         <ul class="navbar__list">
             <li class="navbar__item">
-                <a href="index.html" class="navbar__link">Home</a>
+                <a href="/index.html" class="navbar__link navbar__link--active">Home</a>
             </li>
             <li class="navbar__item">
-                <a href="about.html" class="navbar__link">About</a>
+                <a href="/src/about.html" class="navbar__link">About</a>
             </li>
             <li class="navbar__item">
-                <a href="services.html" class="navbar__link">Services</a>
+                <a href="/src/services.html" class="navbar__link">Our Services</a>
             </li>
             <li class="navbar__item">
-                <a href="contact.html" class="navbar__link">Contact</a>
-            </li>
+                <a href="/src/contact.html" class="navbar__link">Contact</a>
+            </li> 
             <li class="navbar__item">
-                <a href="appointment.html" class="navbar__link">Book Appointment</a>
+                <a href="/src/appointment.html" class="navbar__link">Book Appointment</a>
             </li>
         </ul>
+        
+        <!-- Mobile Toggle Button (Hamburger) -->
+        <button class="navbar__toggle" id="navbarToggle" aria-expanded="false" aria-label="Open menu">
+            <span class="navbar__toggle-bar"></span>
+            <span class="navbar__toggle-bar"></span>
+            <span class="navbar__toggle-bar"></span>
+        </button>
+        
+        <!-- Backdrop -->
+        <div class="navbar__backdrop" id="navbarBackdrop"></div>
+        
+        <!-- Mobile Drawer -->
+        <div class="navbar__drawer" id="navbarDrawer" aria-hidden="true">
+            <button class="navbar__drawer-close" id="navbarDrawerClose" aria-label="Close menu">✕</button>
+            <ul class="navbar__drawer-list">
+                <li><a href="/index.html" class="navbar__drawer-link">Home</a></li>
+                <li><a href="/src/about.html" class="navbar__drawer-link">About</a></li>
+                <li><a href="/src/services.html" class="navbar__drawer-link">Services</a></li>
+                <li><a href="/src/contact.html" class="navbar__drawer-link">Contact</a></li>
+                <li><a href="/src/appointment.html" class="navbar__drawer-link">Book Appointment</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
