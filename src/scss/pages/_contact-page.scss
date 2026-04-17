@@ -442,14 +442,15 @@
                 transition: left 0.5s v.$ease-premium;
             }
 
-            &:hover {
+            &:hover,
+            &:focus-visible {
                 transform: translateY(-3px);
                 box-shadow: v.$shadow-primary;
-
+                outline: 2.5px solid v.$color-primary;
+                outline-offset: 2px;
                 &::before {
                     left: 100%;
                 }
-
                 i {
                     transform: translateX(4px);
                 }
@@ -467,6 +468,19 @@
 
             i {
                 transition: transform 0.3s v.$ease-premium;
+            }
+        }
+
+        a:not(.navbar__link):not(.footer__link) {
+            transition: color 0.2s, box-shadow 0.2s;
+            border-radius: 4px;
+            &:hover,
+            &:focus-visible {
+                color: v.$color-primary;
+                box-shadow: 0 2px 0 0 v.$color-primary;
+                outline: 2px solid v.$color-primary;
+                outline-offset: 2px;
+                text-decoration: underline;
             }
         }
 

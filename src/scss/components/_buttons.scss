@@ -16,11 +16,14 @@
     &--primary {
         background: #d4af37;
         color: #ffffff;
-
-        &:hover {
+        transition: all 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+        &:hover,
+        &:focus-visible {
             background: #b8960c;
             transform: translateY(-2px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            outline: 2.5px solid #d4af37;
+            outline-offset: 2px;
         }
     }
 
@@ -28,11 +31,30 @@
         background: transparent;
         color: #d4af37;
         border: 1px solid #d4af37;
-
-        &:hover {
+        transition: all 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+        &:hover,
+        &:focus-visible {
             background: #d4af37;
             color: #ffffff;
             transform: translateY(-2px);
+            outline: 2.5px solid #d4af37;
+            outline-offset: 2px;
         }
+    }
+}
+
+// تعميم تأثير hover + focus لجميع الأزرار والروابط (عدا النافبار والفوتر)
+.btn,
+.btn-submit,
+a:not(.navbar__link):not(.footer__link) {
+    transition: color 0.2s, box-shadow 0.2s, background 0.3s, outline 0.2s;
+    border-radius: 4px;
+    &:hover,
+    &:focus-visible {
+        color: #d4af37;
+        box-shadow: 0 2px 0 0 #d4af37;
+        outline: 2px solid #d4af37;
+        outline-offset: 2px;
+        text-decoration: underline;
     }
 }
